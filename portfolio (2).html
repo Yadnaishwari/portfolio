@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Yad Gaikwad — Selected Builds</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,500&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --board:#2B2018;
+    --board-2:#342719;
+    --card:#FBF3E2;
+    --card-edge:#EADFC6;
+    --ink:#2A211A;
+    --mid:#6E5F4E;
+    --ochre:#C6892E;
+    --ochre-deep:#9C6A20;
+    --teal:#3F6E6C;
+    --teal-soft:#E4EEEC;
+    --red-pin:#A8402B;
+    --paper-shadow: 0 10px 24px rgba(0,0,0,.28);
+    --serif:"Fraunces", Georgia, serif;
+    --sans:"Inter", -apple-system, "Segoe UI", sans-serif;
+    --mono:"IBM Plex Mono", ui-monospace, Menlo, Consolas, monospace;
+  }
+  *{ box-sizing:border-box; }
+  body{
+    margin:0;
+    background:
+      radial-gradient(ellipse at 20% -10%, rgba(255,255,255,.05), transparent 45%),
+      var(--board);
+    background-image:
+      radial-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+      radial-gradient(ellipse at 20% -10%, rgba(255,255,255,.05), transparent 45%);
+    background-size: 3px 3px, auto;
+    color: var(--card);
+    font-family: var(--sans);
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap{ max-width: 1100px; margin: 0 auto; padding: 64px 28px 90px; }
+
+  header{ max-width: 640px; margin-bottom: 56px; }
+  .eyebrow{
+    font-family: var(--mono); font-size: 12px; letter-spacing: .18em; text-transform: uppercase;
+    color: var(--ochre); margin-bottom: 14px; display:flex; align-items:center; gap:10px;
+  }
+  .eyebrow::before{ content:""; width: 22px; height: 1px; background: var(--ochre); display:inline-block; }
+  h1{
+    font-family: var(--serif); font-weight: 600; font-size: clamp(34px, 5vw, 52px);
+    line-height: 1.08; letter-spacing: -.01em; margin: 0 0 18px; color: #FBF3E2;
+  }
+  h1 em{ font-style: italic; font-weight: 500; color: var(--ochre); }
+  .lede{ font-size: 16.5px; line-height: 1.65; color: #C9BEA9; max-width: 54ch; }
+  .lede b{ color: var(--card); font-weight: 600; }
+
+  .board{
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 34px 28px;
+  }
+
+  .section{ margin-bottom: 54px; }
+  .section-head{
+    display:flex; align-items:baseline; gap:14px; margin-bottom: 26px;
+  }
+  .section-head h2{
+    font-family: var(--serif); font-weight: 600; font-size: 22px; color: #FBF3E2; margin:0;
+  }
+  .section-head .count{
+    font-family: var(--mono); font-size: 11.5px; color: var(--mid-light, #A99C88);
+  }
+  .section-head::after{
+    content:""; flex:1; height:1px; background: rgba(255,255,255,.14); align-self: center;
+  }
+  .section-note{
+    font-size: 13.5px; color: #A99C88; margin: -14px 0 26px; max-width: 56ch; line-height: 1.55;
+  }
+
+  .tile{
+    position: relative;
+    background: var(--card);
+    border-radius: 3px;
+    padding: 30px 24px 24px;
+    box-shadow: var(--paper-shadow);
+    transform: rotate(var(--tilt, 0deg));
+    transition: transform .28s cubic-bezier(.2,.8,.2,1), box-shadow .28s ease;
+    text-decoration: none;
+    display: flex; flex-direction: column; height: 100%;
+  }
+  .tile::after{
+    /* subtle deckled paper edge */
+    content:""; position:absolute; inset:0; border-radius:3px;
+    box-shadow: inset 0 0 0 1px var(--card-edge);
+    pointer-events:none;
+  }
+  a.tile:hover, a.tile:focus-visible{
+    transform: rotate(0deg) translateY(-6px);
+    box-shadow: 0 22px 40px rgba(0,0,0,.4);
+  }
+  a.tile:focus-visible{ outline: 2px solid var(--ochre); outline-offset: 3px; }
+  .tile.locked{ cursor: default; }
+  .tile.locked:hover{ transform: rotate(var(--tilt, 0deg)); box-shadow: var(--paper-shadow); }
+
+  .pin{
+    position: absolute; top: -11px; left: 50%; transform: translateX(-50%);
+    width: 20px; height: 20px; border-radius: 50%;
+    background: radial-gradient(circle at 32% 28%, #E8846A, var(--red-pin) 65%);
+    box-shadow: 0 3px 5px rgba(0,0,0,.35);
+  }
+  .tile.locked .pin{
+    background: radial-gradient(circle at 32% 28%, #9a9a9a, #5c5c5c 65%);
+  }
+
+  .tag{
+    font-family: var(--mono); font-size: 10.5px; letter-spacing: .1em; text-transform: uppercase;
+    color: var(--teal); background: var(--teal-soft); border-radius: 2px;
+    padding: 4px 8px; display: inline-block; margin-bottom: 14px; align-self: flex-start;
+  }
+  .tile.locked .tag{ color: #6b6b6b; background: #ececec; }
+
+  .tile h3{
+    font-family: var(--serif); font-weight: 600; font-size: 21px; line-height: 1.25;
+    color: var(--ink); margin: 0 0 10px;
+  }
+  .tile p.desc{
+    font-size: 14.5px; line-height: 1.55; color: var(--mid); margin: 0 0 18px; flex-grow: 1;
+  }
+
+  .tile-foot{
+    display:flex; align-items:center; justify-content: space-between; gap: 10px;
+    padding-top: 14px; border-top: 1px dashed var(--card-edge);
+  }
+  .slug{
+    font-family: var(--mono); font-size: 11px; color: var(--mid); opacity: .75;
+  }
+  .visit{
+    font-family: var(--mono); font-size: 12px; font-weight: 600; color: var(--ochre-deep);
+    display:flex; align-items:center; gap:5px; white-space:nowrap;
+  }
+  .tile.locked .visit{ color: #8a8a8a; }
+  a.tile:hover .visit{ color: var(--red-pin); }
+  .arrow{ transition: transform .18s ease; }
+  a.tile:hover .arrow{ transform: translateX(3px); }
+
+  footer{
+    max-width: 640px; margin-top: 70px; padding-top: 26px;
+    border-top: 1px solid rgba(255,255,255,.12);
+    font-size: 13.5px; color: #A99C88; line-height: 1.7;
+  }
+  footer a{ color: var(--ochre); text-decoration: none; border-bottom: 1px solid rgba(198,137,46,.35); }
+  footer a:hover{ border-color: var(--ochre); }
+  .made-with{
+    font-family: var(--mono); font-size: 11px; letter-spacing: .06em; color: #8A7A63; margin-top: 14px;
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    .tile, a.tile:hover, .arrow{ transition: none; }
+  }
+  @media (max-width: 480px){
+    .wrap{ padding: 44px 20px 70px; }
+    .board{ gap: 30px 0; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <div class="eyebrow">Selected builds</div>
+    <h1>Things I built<br/>because I <em>needed</em> them.</h1>
+    <p class="lede">
+      I'm an <b>AI product &amp; delivery lead</b> at BCG by day. Outside of client work,
+      I ship small, real software for myself — sometimes to pass an exam, sometimes to plan
+      a trip, sometimes just to stop losing my mornings to my closet.
+    </p>
+  </header>
+
+  <section class="section">
+    <div class="section-head">
+      <h2>Professional</h2>
+      <span class="count" id="countPro"></span>
+    </div>
+    <p class="section-note">AI product work — the tools I've built to make delivery and data quality real, not just discussed.</p>
+    <div class="board" id="boardPro"></div>
+  </section>
+
+  <section class="section">
+    <div class="section-head">
+      <h2>Personal Builds</h2>
+      <span class="count" id="countPersonal"></span>
+    </div>
+    <p class="section-note">Small, real software I ship for myself — proof I build fast, end to end, for the fun of it.</p>
+    <div class="board" id="boardPersonal"></div>
+  </section>
+
+  <footer>
+    <div>Yadnaishwari Gaikwad — AI Product &amp; Delivery Lead ·
+      <a href="https://linkedin.com/in/yadnaishwari-gaikwad" target="_blank" rel="noopener">LinkedIn</a> ·
+      <a href="mailto:yadnaishwari.gaikwad@gmail.com">yadnaishwari.gaikwad@gmail.com</a>
+    </div>
+    <div class="made-with">built with claude</div>
+  </footer>
+
+</div>
+
+<script>
+const PROJECTS = [
+  {
+    section: "pro",
+    name: "Annotation Quality Lab",
+    tag: "AI · Data Quality",
+    desc: "A labeling tool that measures whether AI training data can be trusted — inter-annotator agreement (Cohen's kappa), gold-set accuracy, and a disagreement queue.",
+    slug: "Annotation-quality-lab",
+    url: "https://yadnaishwari.github.io/Annotation-quality-lab/",
+    tilt: 1.8
+  },
+  {
+    section: "pro",
+    name: "Org-Design Diagnostic Skill",
+    tag: "Enterprise · Confidential (BCG)",
+    desc: "A Claude Skill that launches a locally-running org-design diagnostic tool — HRIS data validated on-device, ~50% faster than building the analysis manually. Built end-to-end as product owner for BCG case teams.",
+    slug: null,
+    url: null,
+    tilt: -0.8,
+    locked: true
+  },
+  {
+    section: "personal",
+    name: "Life OS — Wardrobe &amp; Meals",
+    tag: "Personal · Daily Life",
+    desc: "Wardrobe and meal planning in one place — outfit building, closet inventory, and meal prep, so getting dressed and fed stops eating your morning.",
+    slug: "aaj-ki-taaza-khabar",
+    url: "https://aaj-ki-taaza-khabar.vercel.app/",
+    tilt: -1.6
+  },
+  {
+    section: "personal",
+    name: "Illinois Rules of the Road",
+    tag: "Personal · Study Tool",
+    desc: "Flashcards, quiz mode, and a timed exam simulator built to actually pass the Illinois DMV written test — signs, right-of-way, and every number they ask.",
+    slug: "aajgaaditerabhaichalayega",
+    url: "https://aajgaaditerabhaichalayega.vercel.app/",
+    tilt: 1.4
+  },
+  {
+    section: "personal",
+    name: "Trip Planner",
+    tag: "Personal · Travel",
+    desc: "A day-by-day city itinerary tool — drag-to-reorder stops, transit notes, map links, and local tips, for trips planned properly instead of in a group chat.",
+    slug: "gommigoomi",
+    url: "https://gommigoomi.vercel.app/",
+    tilt: -1.1
+  }
+];
+
+function renderTile(p){
+  const el = document.createElement(p.locked ? "div" : "a");
+  el.className = "tile" + (p.locked ? " locked" : "");
+  el.style.setProperty("--tilt", p.tilt + "deg");
+  if (!p.locked){
+    el.href = p.url;
+    el.target = "_blank";
+    el.rel = "noopener noreferrer";
+  }
+  el.innerHTML = `
+    <div class="pin"></div>
+    <span class="tag">${p.tag}</span>
+    <h3>${p.name}</h3>
+    <p class="desc">${p.desc}</p>
+    <div class="tile-foot">
+      <span class="slug">${p.slug ? "slug: " + p.slug : "no public link"}</span>
+      <span class="visit">${p.locked ? "🔒 On request" : 'Visit <span class="arrow">→</span>'}</span>
+    </div>
+  `;
+  return el;
+}
+
+const boardPro = document.getElementById("boardPro");
+const boardPersonal = document.getElementById("boardPersonal");
+const proProjects = PROJECTS.filter(p => p.section === "pro");
+const personalProjects = PROJECTS.filter(p => p.section === "personal");
+
+proProjects.forEach(p => boardPro.appendChild(renderTile(p)));
+personalProjects.forEach(p => boardPersonal.appendChild(renderTile(p)));
+
+document.getElementById("countPro").textContent = proProjects.length + " project" + (proProjects.length !== 1 ? "s" : "");
+document.getElementById("countPersonal").textContent = personalProjects.length + " project" + (personalProjects.length !== 1 ? "s" : "");
+</script>
+</body>
+</html>
