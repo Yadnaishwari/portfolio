@@ -3,13 +3,13 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Yad Gaikwad — Selected Builds</title>
-<meta name="description" content="A hub for the software I've shipped — AI product-delivery sr. analyst by day, builder outside of it. A data-quality tool for AI labeling, a Claude Skill for org-design diagnostics, and a few personal apps I ship just because its fun!" />
+<title>Yad Gaikwad - Selected Builds</title>
+<meta name="description" content="A hub for the software I've shipped - AI product-delivery lead by day, builder outside of it. A data-quality tool for AI labeling, a Claude Skill for org-design diagnostics, an AI job-search platform, and a few personal apps I ship just because I can." />
 
 <!-- Open Graph / LinkedIn / Slack preview -->
 <meta property="og:type" content="website" />
 <meta property="og:title" content="App-etizers" />
-<meta property="og:description" content="A hub for the software I've shipped — AI product-delivery sr. analyst by day, builder outside of it. A data-quality tool for AI labeling, a Claude Skill for org-design diagnostics, and a few personal apps I ship just because its fun!" />
+<meta property="og:description" content="A hub for the software I've shipped - AI product-delivery lead by day, builder outside of it. A data-quality tool for AI labeling, a Claude Skill for org-design diagnostics, an AI job-search platform, and a few personal apps I ship just because I can." />
 <meta property="og:image" content="https://yadnaishwari.github.io/portfolio/og-preview.png" />
 <meta property="og:image:width" content="1200" />
 <meta property="og:image:height" content="630" />
@@ -18,8 +18,9 @@
 <!-- Twitter Card (falls back to same image) -->
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content="App-etizers" />
-<meta name="twitter:description" content="A hub for the software I've shipped — AI product-delivery sr. analyst by day, builder outside of it." />
+<meta name="twitter:description" content="A hub for the software I've shipped - AI product-delivery lead by day, builder outside of it." />
 <meta name="twitter:image" content="https://yadnaishwari.github.io/portfolio/og-preview.png" />
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,500&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
@@ -64,18 +65,12 @@
   }
   .eyebrow::before{ content:""; width: 22px; height: 1px; background: var(--ochre); display:inline-block; }
   h1{
-    font-family: var(--serif); font-weight: 600; font-size: clamp(34px, 5vw, 52px);
-    line-height: 1.08; letter-spacing: -.01em; margin: 0 0 18px; color: #FBF3E2;
+    font-family: var(--serif); font-weight: 700; font-size: clamp(40px, 6vw, 60px);
+    line-height: 1.05; letter-spacing: -.01em; margin: 0 0 18px; color: #FBF3E2;
   }
   h1 em{ font-style: italic; font-weight: 500; color: var(--ochre); }
   .lede{ font-size: 16.5px; line-height: 1.65; color: #C9BEA9; max-width: 54ch; }
   .lede b{ color: var(--card); font-weight: 600; }
-
-  .board{
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 34px 28px;
-  }
 
   .section{ margin-bottom: 54px; }
   .section-head{
@@ -85,13 +80,19 @@
     font-family: var(--serif); font-weight: 600; font-size: 22px; color: #FBF3E2; margin:0;
   }
   .section-head .count{
-    font-family: var(--mono); font-size: 11.5px; color: var(--mid-light, #A99C88);
+    font-family: var(--mono); font-size: 11.5px; color: #A99C88;
   }
   .section-head::after{
     content:""; flex:1; height:1px; background: rgba(255,255,255,.14); align-self: center;
   }
   .section-note{
     font-size: 13.5px; color: #A99C88; margin: -14px 0 26px; max-width: 56ch; line-height: 1.55;
+  }
+
+  .board{
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 34px 28px;
   }
 
   .tile{
@@ -106,7 +107,6 @@
     display: flex; flex-direction: column; height: 100%;
   }
   .tile::after{
-    /* subtle deckled paper edge */
     content:""; position:absolute; inset:0; border-radius:3px;
     box-shadow: inset 0 0 0 1px var(--card-edge);
     pointer-events:none;
@@ -135,6 +135,22 @@
     padding: 4px 8px; display: inline-block; margin-bottom: 14px; align-self: flex-start;
   }
   .tile.locked .tag{ color: #6b6b6b; background: #ececec; }
+
+  .note{
+    font-family: var(--mono); font-size: 10.5px; color: var(--red-pin); background: #F7E6E0;
+    border-radius: 2px; padding: 5px 8px; margin-bottom: 12px; line-height: 1.4;
+  }
+
+  .corner-clip{
+    position: absolute; top: 0; right: 0; width: 84px; height: 84px;
+    overflow: hidden; pointer-events: none; border-radius: 0 3px 0 0;
+  }
+  .in-progress{
+    position: absolute; top: 16px; right: -30px; width: 130px; text-align: center;
+    transform: rotate(40deg); background: var(--ochre); color: #2A211A;
+    font-family: var(--mono); font-size: 9.5px; font-weight: 600; letter-spacing: .08em;
+    text-transform: uppercase; padding: 4px 0; box-shadow: 0 3px 6px rgba(0,0,0,.25);
+  }
 
   .tile h3{
     font-family: var(--serif); font-weight: 600; font-size: 21px; line-height: 1.25;
@@ -187,8 +203,8 @@
     <div class="eyebrow">From Idea to Live</div>
     <h1><em>App</em>-etizers</h1>
     <p class="lede">
-      I'm an <b>AI product &amp; delivery sr. analyst</b> at BCG by day. Outside of client work,
-      I ship small, real software for myself — sometimes to pass an exam, sometimes to plan
+      I'm an <b>AI product &amp; delivery lead</b> at BCG by day. Outside of client work,
+      I ship small, real software for myself - sometimes to pass an exam, sometimes to plan
       a trip, sometimes just to stop losing my mornings to my closet.
     </p>
   </header>
@@ -198,7 +214,7 @@
       <h2>Professional</h2>
       <span class="count" id="countPro"></span>
     </div>
-    <p class="section-note">AI product work — the tools I've built to make delivery and data quality real, not just discussed.</p>
+    <p class="section-note">AI product work - the tools I've built to make delivery and data quality real, not just discussed.</p>
     <div class="board" id="boardPro"></div>
   </section>
 
@@ -207,16 +223,16 @@
       <h2>Personal Builds</h2>
       <span class="count" id="countPersonal"></span>
     </div>
-    <p class="section-note">Small, real software I ship for myself — proof I build fast, end to end, for the fun of it.</p>
+    <p class="section-note">Small, real software I ship for myself - proof I build fast, end to end, for the fun of it.</p>
     <div class="board" id="boardPersonal"></div>
   </section>
 
   <footer>
-    <div>Yadnaishwari Gaikwad — AI Product &amp; Delivery sr. analyst ·
+    <div>Yadnaishwari Gaikwad - AI Product &amp; Delivery Lead ·
       <a href="https://linkedin.com/in/yadnaishwari-gaikwad" target="_blank" rel="noopener">LinkedIn</a> ·
       <a href="mailto:yadnaishwari.gaikwad@gmail.com">yadnaishwari.gaikwad@gmail.com</a>
     </div>
-   
+    <div class="made-with">built with claude</div>
   </footer>
 
 </div>
@@ -225,9 +241,20 @@
 const PROJECTS = [
   {
     section: "pro",
+    name: "CareerPilot",
+    tag: "AI · Job Search Platform",
+    desc: "An agentic job-application platform - works through an approved batch overnight across LinkedIn, Greenhouse/Lever, company portals, and Workday, making judgment calls on safe fields while holding firm autonomy boundaries: always pausing for sponsorship, work authorization, and anything unclear, legal, or blocked. Includes an AI chat assistant, resume tailoring, and ATS scoring.",
+    note: "Invite-only (runs on live AI tokens) - reach out for a demo.",
+    inProgress: true,
+    slug: "resumebuild.store",
+    url: "https://www.resumebuild.store/",
+    tilt: 1.2
+  },
+  {
+    section: "pro",
     name: "Annotation Quality Lab",
     tag: "AI · Data Quality",
-    desc: "A labeling tool that measures whether AI training data can be trusted — inter-annotator agreement (Cohen's kappa), gold-set accuracy, and a disagreement queue.",
+    desc: "A labeling tool that measures whether AI training data can be trusted - inter-annotator agreement (Cohen's kappa), gold-set accuracy, and a disagreement queue.",
     slug: "Annotation-quality-lab",
     url: "https://yadnaishwari.github.io/Annotation-quality-lab/",
     tilt: 1.8
@@ -236,7 +263,7 @@ const PROJECTS = [
     section: "pro",
     name: "Org-Design Diagnostic Skill",
     tag: "Enterprise · Confidential (BCG)",
-    desc: "A Claude Skill that launches a locally-running org-design diagnostic tool — HRIS data validated on-device, ~50% faster than building the analysis manually. Built end-to-end as product owner for BCG case teams.",
+    desc: "A Claude Skill that launches a locally-running org-design diagnostic tool - HRIS data validated on-device, ~50% faster than building the analysis manually. Built end-to-end as product owner for BCG case teams.",
     slug: null,
     url: null,
     tilt: -0.8,
@@ -244,9 +271,9 @@ const PROJECTS = [
   },
   {
     section: "personal",
-    name: "Life OS — Wardrobe &amp; Meals",
+    name: "Life OS - Wardrobe &amp; Meals",
     tag: "Personal · Daily Life",
-    desc: "Wardrobe and meal planning in one place — outfit building, closet inventory, and meal prep, so getting dressed and fed stops eating your morning.",
+    desc: "Wardrobe and meal planning in one place - outfit building, closet inventory, and meal prep, so getting dressed and fed stops eating your morning.",
     slug: "aaj-ki-taaza-khabar",
     url: "https://aaj-ki-taaza-khabar.vercel.app/",
     tilt: -1.6
@@ -255,7 +282,7 @@ const PROJECTS = [
     section: "personal",
     name: "Illinois Rules of the Road",
     tag: "Personal · Study Tool",
-    desc: "Flashcards, quiz mode, and a timed exam simulator built to actually pass the Illinois DMV written test — signs, right-of-way, and every number they ask.",
+    desc: "Flashcards, quiz mode, and a timed exam simulator built to actually pass the Illinois DMV written test - signs, right-of-way, and every number they ask.",
     slug: "aajgaaditerabhaichalayega",
     url: "https://aajgaaditerabhaichalayega.vercel.app/",
     tilt: 1.4
@@ -264,7 +291,7 @@ const PROJECTS = [
     section: "personal",
     name: "Trip Planner",
     tag: "Personal · Travel",
-    desc: "A day-by-day city itinerary tool — drag-to-reorder stops, transit notes, map links, and local tips, for trips planned properly instead of in a group chat.",
+    desc: "A day-by-day city itinerary tool - drag-to-reorder stops, transit notes, map links, and local tips, for trips planned properly instead of in a group chat.",
     slug: "gommigoomi",
     url: "https://gommigoomi.vercel.app/",
     tilt: -1.1
@@ -282,8 +309,10 @@ function renderTile(p){
   }
   el.innerHTML = `
     <div class="pin"></div>
+    ${p.inProgress ? '<div class="corner-clip"><div class="in-progress">In progress</div></div>' : ""}
     <span class="tag">${p.tag}</span>
     <h3>${p.name}</h3>
+    ${p.note ? `<div class="note">🔒 ${p.note}</div>` : ""}
     <p class="desc">${p.desc}</p>
     <div class="tile-foot">
       <span class="slug">${p.slug ? "slug: " + p.slug : "no public link"}</span>
