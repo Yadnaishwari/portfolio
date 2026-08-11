@@ -3,335 +3,281 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Yad Gaikwad - Selected Builds</title>
-<meta name="description" content="A hub for the software I've shipped - AI product-delivery lead by day, builder outside of it. A data-quality tool for AI labeling, a Claude Skill for org-design diagnostics, an AI job-search platform, and a few personal apps I ship just because I can." />
-
-<!-- Open Graph / LinkedIn / Slack preview -->
-<meta property="og:type" content="website" />
-<meta property="og:title" content="App-etizers" />
-<meta property="og:description" content="A hub for the software I've shipped - AI product-delivery lead by day, builder outside of it. A data-quality tool for AI labeling, a Claude Skill for org-design diagnostics, an AI job-search platform, and a few personal apps I ship just because I can." />
-<meta property="og:image" content="https://yadnaishwari.github.io/portfolio/og-preview.png" />
-<meta property="og:image:width" content="1200" />
-<meta property="og:image:height" content="630" />
-<meta property="og:url" content="https://yadnaishwari.github.io/portfolio/" />
-
-<!-- Twitter Card (falls back to same image) -->
-<meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="App-etizers" />
-<meta name="twitter:description" content="A hub for the software I've shipped - AI product-delivery lead by day, builder outside of it." />
-<meta name="twitter:image" content="https://yadnaishwari.github.io/portfolio/og-preview.png" />
-
+<title>Yad Gaikwad</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,500&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
   :root{
-    --board:#2B2018;
-    --board-2:#342719;
-    --card:#FBF3E2;
-    --card-edge:#EADFC6;
-    --ink:#2A211A;
-    --mid:#6E5F4E;
-    --ochre:#C6892E;
-    --ochre-deep:#9C6A20;
-    --teal:#3F6E6C;
-    --teal-soft:#E4EEEC;
-    --red-pin:#A8402B;
-    --paper-shadow: 0 10px 24px rgba(0,0,0,.28);
-    --serif:"Fraunces", Georgia, serif;
-    --sans:"Inter", -apple-system, "Segoe UI", sans-serif;
-    --mono:"IBM Plex Mono", ui-monospace, Menlo, Consolas, monospace;
+    --bg:#F3F3F1; --card:#FFFFFF; --ink:#15151A; --mid:#5B5B63; --dim:#8B8B93;
+    --blue:#3B5FE0; --blue-soft:#EAEEFC;
+    --sans:"Inter", -apple-system, sans-serif; --mono:"IBM Plex Mono", monospace;
   }
   *{ box-sizing:border-box; }
-  body{
-    margin:0;
-    background:
-      radial-gradient(ellipse at 20% -10%, rgba(255,255,255,.05), transparent 45%),
-      var(--board);
-    background-image:
-      radial-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
-      radial-gradient(ellipse at 20% -10%, rgba(255,255,255,.05), transparent 45%);
-    background-size: 3px 3px, auto;
-    color: var(--card);
-    font-family: var(--sans);
-    -webkit-font-smoothing: antialiased;
-  }
-  .wrap{ max-width: 1100px; margin: 0 auto; padding: 64px 28px 90px; }
+  body{ margin:0; background:var(--bg); color:var(--ink); font-family:var(--sans); -webkit-font-smoothing:antialiased; }
+  .wrap{ max-width: 1000px; margin:0 auto; padding: 26px 24px 90px; }
 
-  header{ max-width: 640px; margin-bottom: 56px; }
-  .eyebrow{
-    font-family: var(--mono); font-size: 12px; letter-spacing: .18em; text-transform: uppercase;
-    color: var(--ochre); margin-bottom: 14px; display:flex; align-items:center; gap:10px;
-  }
-  .eyebrow::before{ content:""; width: 22px; height: 1px; background: var(--ochre); display:inline-block; }
-  h1{
-    font-family: var(--serif); font-weight: 700; font-size: clamp(40px, 6vw, 60px);
-    line-height: 1.05; letter-spacing: -.01em; margin: 0 0 18px; color: #FBF3E2;
-  }
-  h1 em{ font-style: italic; font-weight: 500; color: var(--ochre); }
-  .lede{ font-size: 16.5px; line-height: 1.65; color: #C9BEA9; max-width: 54ch; }
-  .lede b{ color: var(--card); font-weight: 600; }
+  nav{ display:flex; justify-content:center; margin-bottom: 34px; }
+  .pillnav{ display:inline-flex; background:#fff; border-radius:99px; padding:6px; box-shadow:0 4px 16px rgba(0,0,0,.08); gap:4px; }
+  .pillnav button{ font-family:var(--sans); font-size:14.5px; font-weight:600; border:none; background:transparent; color:var(--ink);
+    padding:10px 20px; border-radius:99px; cursor:pointer; transition: all .15s; }
+  .pillnav button.active{ background: var(--ink); color:#fff; }
 
-  .section{ margin-bottom: 54px; }
-  .section-head{
-    display:flex; align-items:baseline; gap:14px; margin-bottom: 26px;
-  }
-  .section-head h2{
-    font-family: var(--serif); font-weight: 600; font-size: 22px; color: #FBF3E2; margin:0;
-  }
-  .section-head .count{
-    font-family: var(--mono); font-size: 11.5px; color: #A99C88;
-  }
-  .section-head::after{
-    content:""; flex:1; height:1px; background: rgba(255,255,255,.14); align-self: center;
-  }
-  .section-note{
-    font-size: 13.5px; color: #A99C88; margin: -14px 0 26px; max-width: 56ch; line-height: 1.55;
-  }
+  .page{ display:none; }
+  .page.active{ display:block; animation: fade .25s ease; }
+  @keyframes fade{ from{ opacity:0; transform:translateY(6px); } to{ opacity:1; transform:translateY(0); } }
 
-  .board{
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 34px 28px;
+  .hero{
+    position:relative; border-radius:28px; overflow:hidden; min-height: 480px;
+    background: linear-gradient(150deg, #1B1F2E 0%, #2E3555 45%, #3B5FE0 100%);
+    display:flex; align-items:flex-end; padding: 40px;
   }
+  .hero-social{ position:absolute; top:24px; right:24px; background:#15151A; border-radius:99px; padding:14px 10px;
+    display:flex; flex-direction:column; gap:16px; }
+  .hero-social a{ color:#fff; opacity:.85; text-decoration:none; display:flex; font-family:var(--mono); font-size:13px; }
+  .hero-social a:hover{ opacity:1; }
+  .hero-name{ font-size: clamp(34px,6vw,52px); font-weight:800; color:#fff; margin:0 0 6px; letter-spacing:-.01em; }
+  .hero-sub{ font-size:16px; color:rgba(255,255,255,.82); margin:0; font-family:var(--mono); }
+  .hero-edu{ font-size:13px; color:rgba(255,255,255,.6); margin:8px 0 0; font-family:var(--mono); }
+  .home-note{ font-size:13px; color:var(--dim); margin-top:14px; max-width:60ch; }
 
-  .tile{
-    position: relative;
-    background: var(--card);
-    border-radius: 3px;
-    padding: 30px 24px 24px;
-    box-shadow: var(--paper-shadow);
-    transform: rotate(var(--tilt, 0deg));
-    transition: transform .28s cubic-bezier(.2,.8,.2,1), box-shadow .28s ease;
-    text-decoration: none;
-    display: flex; flex-direction: column; height: 100%;
-  }
-  .tile::after{
-    content:""; position:absolute; inset:0; border-radius:3px;
-    box-shadow: inset 0 0 0 1px var(--card-edge);
-    pointer-events:none;
-  }
-  a.tile:hover, a.tile:focus-visible{
-    transform: rotate(0deg) translateY(-6px);
-    box-shadow: 0 22px 40px rgba(0,0,0,.4);
-  }
-  a.tile:focus-visible{ outline: 2px solid var(--ochre); outline-offset: 3px; }
-  .tile.locked{ cursor: default; }
-  .tile.locked:hover{ transform: rotate(var(--tilt, 0deg)); box-shadow: var(--paper-shadow); }
+  h1.pagetitle{ text-align:center; font-size:34px; font-weight:800; margin: 10px 0 36px; }
+  h2.subtitle{ text-align:center; font-size:24px; font-weight:800; margin: 50px 0 26px; }
 
-  .pin{
-    position: absolute; top: -11px; left: 50%; transform: translateX(-50%);
-    width: 20px; height: 20px; border-radius: 50%;
-    background: radial-gradient(circle at 32% 28%, #E8846A, var(--red-pin) 65%);
-    box-shadow: 0 3px 5px rgba(0,0,0,.35);
-  }
-  .tile.locked .pin{
-    background: radial-gradient(circle at 32% 28%, #9a9a9a, #5c5c5c 65%);
-  }
+  .accordion-item{ border:1.5px solid #E4E4E2; border-radius:16px; margin-bottom:12px; overflow:hidden; background:#fff; }
+  .accordion-head{ display:flex; justify-content:space-between; align-items:center; padding:16px 20px; cursor:pointer; font-weight:600; font-size:15px; }
+  .accordion-head .plus{ font-size:20px; font-weight:400; color:var(--mid); transition: transform .2s; }
+  .accordion-item.open .plus{ transform: rotate(45deg); }
+  .accordion-body{ display:none; padding: 4px 20px 16px; background:#F8F8F7; }
+  .accordion-item.open .accordion-body{ display:block; }
+  .skill-row{ display:flex; justify-content:space-between; padding:9px 0; font-size:14.5px; border-bottom:1px dashed #E4E4E2; }
+  .skill-row:last-child{ border-bottom:none; }
+  .skill-row .lvl{ font-family:var(--mono); font-size:12px; color:var(--dim); }
 
-  .tag{
-    font-family: var(--mono); font-size: 10.5px; letter-spacing: .1em; text-transform: uppercase;
-    color: var(--teal); background: var(--teal-soft); border-radius: 2px;
-    padding: 4px 8px; display: inline-block; margin-bottom: 14px; align-self: flex-start;
-  }
-  .tile.locked .tag{ color: #6b6b6b; background: #ececec; }
+  .job-card{ background:#fff; border-radius:16px; border-left:5px solid var(--blue); padding:22px 26px; margin-bottom:16px; box-shadow:0 4px 14px rgba(0,0,0,.05); }
+  .job-role{ font-size:19px; font-weight:800; margin:0 0 4px; }
+  .job-org{ font-size:14.5px; color:var(--mid); margin:0 0 2px; }
+  .job-dates{ font-family:var(--mono); font-size:12.5px; color:var(--dim); margin:0 0 10px; }
+  .job-highlight{ font-size:14px; color:var(--ink); background:var(--blue-soft); display:inline-block; padding:4px 10px; border-radius:8px; }
+  .job-bullets{ margin:0; padding-left:20px; }
+  .job-bullets li{ font-size:14px; line-height:1.55; color:var(--ink); margin-bottom:7px; }
+  .job-bullets li:last-child{ margin-bottom:0; }
+  .job-bullets b{ color:var(--blue); }
 
-  .note{
-    font-family: var(--mono); font-size: 10.5px; color: var(--red-pin); background: #F7E6E0;
-    border-radius: 2px; padding: 5px 8px; margin-bottom: 12px; line-height: 1.4;
-  }
+  .full-bleed{ width:100vw; margin-left:calc(-50vw + 50%); padding: 0 32px; }
+  .proj-section-title{ text-align:center; font-size:20px; font-weight:800; margin: 6px 0 4px; }
+  .proj-section-sub{ text-align:center; font-size:13px; color:var(--dim); margin: 0 0 26px; }
+  .proj-grid{ display:grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap:20px; max-width:1400px; margin:0 auto 56px; }
+  .proj-card{ position:relative; border-radius:20px; overflow:hidden; min-height:280px;
+    display:flex; flex-direction:column; justify-content:flex-end; padding:22px; color:#fff; text-decoration:none; }
+  .proj-card::before{ content:""; position:absolute; inset:0; background: linear-gradient(180deg, transparent 30%, rgba(0,0,0,.72)); }
+  .proj-card .pc-name{ position:relative; font-size:19px; font-weight:800; margin:0 0 4px; z-index:1; }
+  .proj-card .pc-tag{ position:relative; font-family:var(--mono); font-size:10.5px; opacity:.85; text-transform:uppercase; letter-spacing:.05em; margin-bottom:8px; z-index:1; }
+  .proj-card .pc-desc{ position:relative; font-size:13px; line-height:1.5; opacity:.92; z-index:1; }
+  .proj-card .pc-plus{ position:absolute; top:16px; right:16px; width:32px; height:32px; border-radius:50%; background:rgba(255,255,255,.18);
+    display:flex; align-items:center; justify-content:center; font-size:18px; z-index:2; }
+  .proj-card.locked{ filter: grayscale(.35) brightness(.8); cursor:default; }
 
-  .corner-clip{
-    position: absolute; top: 0; right: 0; width: 84px; height: 84px;
-    overflow: hidden; pointer-events: none; border-radius: 0 3px 0 0;
-  }
-  .in-progress{
-    position: absolute; top: 16px; right: -30px; width: 130px; text-align: center;
-    transform: rotate(40deg); background: var(--ochre); color: #2A211A;
-    font-family: var(--mono); font-size: 9.5px; font-weight: 600; letter-spacing: .08em;
-    text-transform: uppercase; padding: 4px 0; box-shadow: 0 3px 6px rgba(0,0,0,.25);
-  }
+  .about-card{ background:#15151A; border-radius:28px; padding:44px 36px; text-align:center; max-width:640px; margin: 0 auto; }
+  .avatar{ width:88px; height:88px; border-radius:50%; background: linear-gradient(150deg, #3B5FE0, #7C6FF0); margin:0 auto 18px;
+    display:flex; align-items:center; justify-content:center; font-size:30px; font-weight:800; color:#fff; }
+  .about-card h2{ color:#fff; font-size:24px; margin:0 0 6px; }
+  .about-tag{ color:#7C9BFF; font-family:var(--mono); font-size:13px; margin:0 0 18px; }
+  .about-bio{ color:#D8D8DC; font-size:14.5px; line-height:1.7; }
 
-  .tile h3{
-    font-family: var(--serif); font-weight: 600; font-size: 21px; line-height: 1.25;
-    color: var(--ink); margin: 0 0 10px;
-  }
-  .tile p.desc{
-    font-size: 14.5px; line-height: 1.55; color: var(--mid); margin: 0 0 18px; flex-grow: 1;
-  }
-
-  .tile-foot{
-    display:flex; align-items:center; justify-content: space-between; gap: 10px;
-    padding-top: 14px; border-top: 1px dashed var(--card-edge);
-  }
-  .slug{
-    font-family: var(--mono); font-size: 11px; color: var(--mid); opacity: .75;
-  }
-  .visit{
-    font-family: var(--mono); font-size: 12px; font-weight: 600; color: var(--ochre-deep);
-    display:flex; align-items:center; gap:5px; white-space:nowrap;
-  }
-  .tile.locked .visit{ color: #8a8a8a; }
-  a.tile:hover .visit{ color: var(--red-pin); }
-  .arrow{ transition: transform .18s ease; }
-  a.tile:hover .arrow{ transform: translateX(3px); }
-
-  footer{
-    max-width: 640px; margin-top: 70px; padding-top: 26px;
-    border-top: 1px solid rgba(255,255,255,.12);
-    font-size: 13.5px; color: #A99C88; line-height: 1.7;
-  }
-  footer a{ color: var(--ochre); text-decoration: none; border-bottom: 1px solid rgba(198,137,46,.35); }
-  footer a:hover{ border-color: var(--ochre); }
-  .made-with{
-    font-family: var(--mono); font-size: 11px; letter-spacing: .06em; color: #8A7A63; margin-top: 14px;
-  }
-
-  @media (prefers-reduced-motion: reduce){
-    .tile, a.tile:hover, .arrow{ transition: none; }
-  }
-  @media (max-width: 480px){
-    .wrap{ padding: 44px 20px 70px; }
-    .board{ gap: 30px 0; }
-  }
+  footer{ text-align:center; margin-top:56px; font-size:12.5px; color:var(--dim); }
+  footer a{ color:var(--blue); text-decoration:none; }
 </style>
 </head>
 <body>
 <div class="wrap">
 
-  <header>
-    <div class="eyebrow">From Idea to Live</div>
-    <h1><em>App</em>-etizers</h1>
-    <p class="lede">
-      I'm an <b>AI product &amp; delivery lead</b> at BCG by day. Outside of client work,
-      I ship small, real software for myself - sometimes to pass an exam, sometimes to plan
-      a trip, sometimes just to stop losing my mornings to my closet.
-    </p>
-  </header>
-
-  <section class="section">
-    <div class="section-head">
-      <h2>Professional</h2>
-      <span class="count" id="countPro"></span>
+  <nav>
+    <div class="pillnav">
+      <button data-page="home" class="active">Home</button>
+      <button data-page="experience">Experience</button>
+      <button data-page="projects">Projects</button>
+      <button data-page="about">About</button>
     </div>
-    <p class="section-note">AI product work - the tools I've built to make delivery and data quality real, not just discussed.</p>
-    <div class="board" id="boardPro"></div>
+  </nav>
+
+  <section class="page active" id="home">
+    <div class="hero">
+      <div class="hero-social">
+        <a href="https://linkedin.com/in/yadnaishwari-gaikwad" target="_blank" rel="noopener" title="LinkedIn">in</a>
+        <a href="mailto:yadnaishwari.gaikwad@gmail.com" title="Email">@</a>
+      </div>
+      <div>
+        <div class="hero-name">Yadnaishwari Gaikwad</div>
+        <div class="hero-sub">Senior AI Product Delivery Analyst @BCG</div>
+        <div class="hero-edu">MSIS, Kelley School of Business - Indiana University Bloomington</div>
+      </div>
+    </div>
+    <p class="home-note">Send me a real photo whenever you're ready and I'll drop it into this hero - I won't fabricate one.</p>
   </section>
 
-  <section class="section">
-    <div class="section-head">
-      <h2>Personal Builds</h2>
-      <span class="count" id="countPersonal"></span>
+  <section class="page" id="experience">
+    <h1 class="pagetitle">Skills</h1>
+
+    <div class="accordion-item">
+      <div class="accordion-head">Program &amp; Delivery<span class="plus">+</span></div>
+      <div class="accordion-body">
+        <div class="skill-row"><span>Agile / Scrum</span><span class="lvl">daily use</span></div>
+        <div class="skill-row"><span>Requirements-to-spec translation</span><span class="lvl">core skill</span></div>
+        <div class="skill-row"><span>Backlog &amp; sprint delivery</span><span class="lvl">core skill</span></div>
+        <div class="skill-row"><span>Stakeholder &amp; C-suite management</span><span class="lvl">core skill</span></div>
+      </div>
     </div>
-    <p class="section-note">Small, real software I ship for myself - proof I build fast, end to end, for the fun of it.</p>
-    <div class="board" id="boardPersonal"></div>
+
+    <div class="accordion-item">
+      <div class="accordion-head">Data &amp; Analytics<span class="plus">+</span></div>
+      <div class="accordion-body">
+        <div class="skill-row"><span>SQL</span><span class="lvl">working</span></div>
+        <div class="skill-row"><span>Excel / Alteryx</span><span class="lvl">advanced</span></div>
+        <div class="skill-row"><span>Tableau / Power BI</span><span class="lvl">advanced</span></div>
+        <div class="skill-row"><span>Python</span><span class="lvl">working</span></div>
+      </div>
+    </div>
+
+    <div class="accordion-item">
+      <div class="accordion-head">AI &amp; Automation<span class="plus">+</span></div>
+      <div class="accordion-body">
+        <div class="skill-row"><span>Claude, ChatGPT, prompt engineering</span><span class="lvl">daily use</span></div>
+        <div class="skill-row"><span>RPA (Blue Prism)</span><span class="lvl">hands-on</span></div>
+        <div class="skill-row"><span>AI Fluency Ladder (BCG)</span><span class="lvl">Automator (all 4 rungs)</span></div>
+      </div>
+    </div>
+
+    <div class="accordion-item">
+      <div class="accordion-head">Certifications<span class="plus">+</span></div>
+      <div class="accordion-body">
+        <div class="skill-row"><span>Microsoft Certified: Azure Fundamentals</span><span class="lvl"></span></div>
+        <div class="skill-row"><span>Product Management: Building a Product Roadmap</span><span class="lvl"></span></div>
+        <div class="skill-row"><span>EY Cloud &amp; Analytics (Bronze)</span><span class="lvl"></span></div>
+      </div>
+    </div>
+
+    <h2 class="subtitle">Work Experience</h2>
+
+    <div class="job-card">
+      <div class="job-role">Senior Delivery AI Product Analyst</div>
+      <div class="job-org">Boston Consulting Group, Chicago, IL</div>
+      <div class="job-dates">Sep 2023 - Present</div>
+      <ul class="job-bullets">
+        <li><b>Owned</b> the end-to-end org-design workstream and OrgBuilder&trade; delivery across <b>~20 Fortune 500 engagements</b> in 4 industries, delivering <b>~$35-37M+</b> in value per client.</li>
+        <li><b>Built and shipped</b> a Claude Skill end-to-end - scoping, spec, and build - cutting analysis time <b>~50%</b>, now in active use across case teams.</li>
+        <li><b>Developed</b> 2-3 executive dashboards per engagement, cutting the team's reporting prep time <b>~20%</b> and improving accuracy.</li>
+        <li><b>Drove</b> solution adoption through ~10 client workshops of 20-50 users each, lifting adoption <b>~40%</b> and engagement <b>~50%</b>.</li>
+      </ul>
+    </div>
+
+    <div class="job-card">
+      <div class="job-role">Senior Consultant, IT Solutions</div>
+      <div class="job-org">Ernst &amp; Young, Chicago, IL</div>
+      <div class="job-dates">Jul 2022 - Jun 2023</div>
+      <ul class="job-bullets">
+        <li><b>Orchestrated</b> the end-to-end migration program for <b>14 applications</b>, driving cross-stakeholder alignment to a <b>95%</b> on-time completion rate.</li>
+        <li><b>Defined and rolled out</b> a scalable Data Mesh framework for data-product development, cutting implementation timelines <b>30%</b> and improving operational efficiency <b>20%</b>.</li>
+      </ul>
+    </div>
+
+    <div class="job-card">
+      <div class="job-role">Engineering Support Analyst</div>
+      <div class="job-org">BNP Paribas ISPL, Mumbai, India</div>
+      <div class="job-dates">Jun 2018 - May 2021</div>
+      <ul class="job-bullets">
+        <li><b>Ran</b> reconciliation operations for a global bank on a platform processing <b>~1M transactions/day</b> across three continents, resolving ~60 critical issues weekly.</li>
+        <li><b>Automated</b> recurring processes with RPA (Blue Prism), SQL, and scripts, cutting execution time up to <b>90%</b> and raising team productivity <b>50%</b>.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="page" id="projects">
+    <h1 class="pagetitle">Projects</h1>
+
+    <div class="full-bleed">
+      <div class="proj-section-title">Professional</div>
+      <div class="proj-section-sub">AI product work - tools that make delivery and data quality real, not just discussed.</div>
+      <div class="proj-grid">
+        <a class="proj-card" href="https://www.resumebuild.store/" target="_blank" style="background: linear-gradient(150deg,#1B1F2E,#3B5FE0);">
+          <span class="pc-plus">+</span>
+          <span class="pc-name">CareerPilot</span>
+          <span class="pc-tag">AI - Job Search Platform</span>
+          <span class="pc-desc">An agentic job-application platform - works through an approved batch overnight across LinkedIn, Greenhouse/Lever, company portals, and Workday, with firm autonomy boundaries: always pausing for sponsorship, work authorization, and anything unclear or blocked. Invite-only (runs on live AI tokens).</span>
+        </a>
+        <a class="proj-card" href="https://yadnaishwari.github.io/Annotation-quality-lab/" target="_blank" style="background: linear-gradient(150deg,#2E2A1B,#C6892E);">
+          <span class="pc-plus">+</span>
+          <span class="pc-name">Annotation Quality Lab</span>
+          <span class="pc-tag">AI - Data Quality</span>
+          <span class="pc-desc">A labeling tool that measures whether AI training data can be trusted - inter-annotator agreement (Cohen's kappa), gold-set accuracy, and a disagreement queue.</span>
+        </a>
+        <div class="proj-card locked" style="background: linear-gradient(150deg,#2B2B2B,#5B5B5B);">
+          <span class="pc-plus">&#128274;</span>
+          <span class="pc-name">Org-Design Diagnostic Skill</span>
+          <span class="pc-tag">Confidential (BCG)</span>
+          <span class="pc-desc">A Claude Skill that launches a locally-running org-design diagnostic tool - HRIS data validated on-device, ~50% faster than building the analysis manually. Built end-to-end as product owner for BCG case teams.</span>
+        </div>
+      </div>
+
+      <div class="proj-section-title">Personal Builds</div>
+      <div class="proj-section-sub">Small, real software I ship for myself - proof I build fast, end to end, for the fun of it.</div>
+      <div class="proj-grid">
+        <a class="proj-card" href="https://aaj-ki-taaza-khabar.vercel.app/" target="_blank" style="background: linear-gradient(150deg,#3D2F22,#A8402B);">
+          <span class="pc-plus">+</span>
+          <span class="pc-name">Life OS</span>
+          <span class="pc-tag">Personal - Daily Life</span>
+          <span class="pc-desc">Wardrobe and meal planning in one place - outfit building, closet inventory, and meal prep, so getting dressed and fed stops eating your morning.</span>
+        </a>
+        <a class="proj-card" href="https://aajgaaditerabhaichalayega.vercel.app/" target="_blank" style="background: linear-gradient(150deg,#1B2E29,#3F6E6C);">
+          <span class="pc-plus">+</span>
+          <span class="pc-name">Illinois Rules of the Road</span>
+          <span class="pc-tag">Personal - Study Tool</span>
+          <span class="pc-desc">Flashcards, quiz mode, and a timed exam simulator built to actually pass the Illinois DMV written test - signs, right-of-way, and every number they ask.</span>
+        </a>
+        <a class="proj-card" href="https://gommigoomi.vercel.app/" target="_blank" style="background: linear-gradient(150deg,#241B2E,#7C6FF0);">
+          <span class="pc-plus">+</span>
+          <span class="pc-name">Trip Planner</span>
+          <span class="pc-tag">Personal - Travel</span>
+          <span class="pc-desc">A day-by-day city itinerary tool - drag-to-reorder stops, transit notes, map links, and local tips, for trips planned properly instead of in a group chat.</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="about">
+    <div class="about-card">
+      <div class="avatar">YG</div>
+      <h2>Yadnaishwari Gaikwad</h2>
+      <p class="about-tag">Senior AI Product Delivery Analyst @BCG</p>
+      <p class="about-bio">
+        I'm drawn to problems that don't have a clean starting point - where the obvious answer isn't
+        the right one, and figuring out what actually matters takes real digging. The art of the possible
+        is the part I enjoy most. I run end-to-end org-design programs at BCG, liaise across case teams,
+        clients, and BCG's tool team, and have actively woven AI into my day-to-day - from QC-ing data with
+        purpose-built prompts to building a Claude Skill that cut diagnostic time roughly in half.
+      </p>
+    </div>
   </section>
 
   <footer>
-    <div>Yadnaishwari Gaikwad - AI Product &amp; Delivery Lead ·
-      <a href="https://linkedin.com/in/yadnaishwari-gaikwad" target="_blank" rel="noopener">LinkedIn</a> ·
-      <a href="mailto:yadnaishwari.gaikwad@gmail.com">yadnaishwari.gaikwad@gmail.com</a>
-    </div>
-    <div class="made-with">built with claude</div>
+    <a href="mailto:yadnaishwari.gaikwad@gmail.com">yadnaishwari.gaikwad@gmail.com</a>
   </footer>
 
 </div>
 
 <script>
-const PROJECTS = [
-  {
-    section: "pro",
-    name: "CareerPilot",
-    tag: "AI · Job Search Platform",
-    desc: "An agentic job-application platform - works through an approved batch overnight across LinkedIn, Greenhouse/Lever, company portals, and Workday, making judgment calls on safe fields while holding firm autonomy boundaries: always pausing for sponsorship, work authorization, and anything unclear, legal, or blocked. Includes an AI chat assistant, resume tailoring, and ATS scoring.",
-    note: "Invite-only (runs on live AI tokens) - reach out for a demo.",
-    inProgress: false,
-    slug: "resumebuild.store",
-    url: "https://www.resumebuild.store/",
-    tilt: 1.2
-  },
-  {
-    section: "pro",
-    name: "Annotation Quality Lab",
-    tag: "AI · Data Quality",
-    desc: "A labeling tool that measures whether AI training data can be trusted - inter-annotator agreement (Cohen's kappa), gold-set accuracy, and a disagreement queue.",
-    slug: "Annotation-quality-lab",
-    url: "https://yadnaishwari.github.io/Annotation-quality-lab/",
-    tilt: 1.8
-  },
-  {
-    section: "pro",
-    name: "Org-Design Diagnostic Skill",
-    tag: "Enterprise · Confidential (BCG)",
-    desc: "A Claude Skill that launches a locally-running org-design diagnostic tool - HRIS data validated on-device, ~50% faster than building the analysis manually. Built end-to-end as product owner for BCG case teams.",
-    slug: null,
-    url: null,
-    tilt: -0.8,
-    locked: true
-  },
-  {
-    section: "personal",
-    name: "Life OS - Wardrobe &amp; Meals",
-    tag: "Personal · Daily Life",
-    desc: "Wardrobe and meal planning in one place - outfit building, closet inventory, and meal prep, so getting dressed and fed stops eating your morning.",
-    slug: "aaj-ki-taaza-khabar",
-    url: "https://aaj-ki-taaza-khabar.vercel.app/",
-    tilt: -1.6
-  },
-  {
-    section: "personal",
-    name: "Illinois Rules of the Road",
-    tag: "Personal · Study Tool",
-    desc: "Flashcards, quiz mode, and a timed exam simulator built to actually pass the Illinois DMV written test - signs, right-of-way, and every number they ask.",
-    slug: "aajgaaditerabhaichalayega",
-    url: "https://aajgaaditerabhaichalayega.vercel.app/",
-    tilt: 1.4
-  },
-  {
-    section: "personal",
-    name: "Trip Planner",
-    tag: "Personal · Travel",
-    desc: "A day-by-day city itinerary tool - drag-to-reorder stops, transit notes, map links, and local tips, for trips planned properly instead of in a group chat.",
-    slug: "gommigoomi",
-    url: "https://gommigoomi.vercel.app/",
-    tilt: -1.1
-  }
-];
-
-function renderTile(p){
-  const el = document.createElement(p.locked ? "div" : "a");
-  el.className = "tile" + (p.locked ? " locked" : "");
-  el.style.setProperty("--tilt", p.tilt + "deg");
-  if (!p.locked){
-    el.href = p.url;
-    el.target = "_blank";
-    el.rel = "noopener noreferrer";
-  }
-  el.innerHTML = `
-    <div class="pin"></div>
-    ${p.inProgress ? '<div class="corner-clip"><div class="in-progress">In progress</div></div>' : ""}
-    <span class="tag">${p.tag}</span>
-    <h3>${p.name}</h3>
-    ${p.note ? `<div class="note">🔒 ${p.note}</div>` : ""}
-    <p class="desc">${p.desc}</p>
-    <div class="tile-foot">
-      <span class="slug">${p.slug ? "slug: " + p.slug : "no public link"}</span>
-      <span class="visit">${p.locked ? "🔒 On request" : 'Visit <span class="arrow">→</span>'}</span>
-    </div>
-  `;
-  return el;
-}
-
-const boardPro = document.getElementById("boardPro");
-const boardPersonal = document.getElementById("boardPersonal");
-const proProjects = PROJECTS.filter(p => p.section === "pro");
-const personalProjects = PROJECTS.filter(p => p.section === "personal");
-
-proProjects.forEach(p => boardPro.appendChild(renderTile(p)));
-personalProjects.forEach(p => boardPersonal.appendChild(renderTile(p)));
-
-document.getElementById("countPro").textContent = proProjects.length + " project" + (proProjects.length !== 1 ? "s" : "");
-document.getElementById("countPersonal").textContent = personalProjects.length + " project" + (personalProjects.length !== 1 ? "s" : "");
+document.querySelectorAll(".pillnav button").forEach(btn => {
+  btn.onclick = () => {
+    document.querySelectorAll(".pillnav button").forEach(b => b.classList.remove("active"));
+    document.querySelectorAll(".page").forEach(p => p.classList.remove("active"));
+    btn.classList.add("active");
+    document.getElementById(btn.dataset.page).classList.add("active");
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+});
+document.querySelectorAll(".accordion-head").forEach(head => {
+  head.onclick = () => head.parentElement.classList.toggle("open");
+});
 </script>
 </body>
 </html>
