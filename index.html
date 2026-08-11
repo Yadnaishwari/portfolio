@@ -32,17 +32,45 @@
     background: linear-gradient(150deg, #1B1F2E 0%, #2E3555 45%, #3B5FE0 100%);
     display:flex; align-items:flex-end; padding: 40px;
   }
-  .hero-social{ position:absolute; top:24px; right:24px; background:#15151A; border-radius:99px; padding:14px 10px;
-    display:flex; flex-direction:column; gap:16px; }
-  .hero-social a{ color:#fff; opacity:.85; text-decoration:none; display:flex; font-family:var(--mono); font-size:13px; }
-  .hero-social a:hover{ opacity:1; }
+  .hero::after{ content:""; position:absolute; inset:0; background: linear-gradient(180deg, transparent 45%, rgba(0,0,0,.55)); z-index:0; }
+  .hero-social, .hero > div:not(.hero-social){ position:relative; z-index:1; }
+  .hero-social{ position:absolute; top:22px; left:50%; transform:translateX(-50%); background:rgba(21,21,26,.85);
+    border-radius:99px; padding:10px 18px; display:flex; flex-direction:row; align-items:center; gap:22px; flex-wrap:wrap;
+    justify-content:center; backdrop-filter:blur(4px); }
+  .hero-social a{ color:#fff; opacity:.9; text-decoration:none; display:flex; align-items:center; justify-content:center;
+    width:26px; height:26px; transition: opacity .15s, transform .15s; }
+  .hero-social a:hover{ opacity:1; transform: scale(1.12); }
+  .hero-social svg{ width:100%; height:100%; }
+  @media (max-width:768px){
+    .wrap{ padding: 20px 18px 70px; }
+    .hero{ min-height: 380px; padding: 28px; border-radius:20px; }
+    .about-card{ padding:32px 24px; }
+    .job-card, .tl-item{ padding:18px 20px; }
+    .full-bleed{ padding: 0 18px; }
+    .proj-grid{ grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap:14px; }
+    .proj-card{ min-height:240px; padding:18px; }
+  }
+  @media (max-width:480px){
+    .wrap{ padding: 16px 14px 60px; }
+    .pillnav{ padding:5px; gap:2px; }
+    .pillnav button{ font-size:12.5px; padding:8px 12px; }
+    .hero{ min-height: 320px; padding: 20px; align-items:flex-end; }
+    .hero-name{ font-size: clamp(24px,7vw,32px); }
+    .hero-sub{ font-size:13px; }
+    .hero-edu{ font-size:11px; }
+    .hero-social{ top:14px; padding:7px 12px; gap:14px; }
+    .hero-social a{ width:20px; height:20px; }
+    .proj-grid{ grid-template-columns: 1fr; }
+    .proj-card{ min-height:220px; }
+    .about-card{ padding:26px 18px; }
+    .avatar{ width:72px; height:72px; font-size:24px; }
+  }
   .hero-name{ font-size: clamp(34px,6vw,52px); font-weight:800; color:#fff; margin:0 0 6px; letter-spacing:-.01em; }
   .hero-sub{ font-size:16px; color:rgba(255,255,255,.82); margin:0; font-family:var(--mono); }
   .hero-edu{ font-size:13px; color:rgba(255,255,255,.6); margin:8px 0 0; font-family:var(--mono); }
-  .home-note{ font-size:13px; color:var(--dim); margin-top:14px; max-width:60ch; }
 
-  h1.pagetitle{ text-align:center; font-size:34px; font-weight:800; margin: 10px 0 36px; }
-  h2.subtitle{ text-align:center; font-size:24px; font-weight:800; margin: 50px 0 26px; }
+  h1.pagetitle{ text-align:center; font-size:clamp(26px,5vw,34px); font-weight:800; margin: 10px 0 36px; }
+  h2.subtitle{ text-align:center; font-size:clamp(19px,3.5vw,24px); font-weight:800; margin: 50px 0 26px; }
 
   .accordion-item{ border:1.5px solid #E4E4E2; border-radius:16px; margin-bottom:12px; overflow:hidden; background:#fff; }
   .accordion-head{ display:flex; justify-content:space-between; align-items:center; padding:16px 20px; cursor:pointer; font-weight:600; font-size:15px; }
@@ -70,13 +98,35 @@
   .proj-grid{ display:grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap:20px; max-width:1400px; margin:0 auto 56px; }
   .proj-card{ position:relative; border-radius:20px; overflow:hidden; min-height:280px;
     display:flex; flex-direction:column; justify-content:flex-end; padding:22px; color:#fff; text-decoration:none; }
-  .proj-card::before{ content:""; position:absolute; inset:0; background: linear-gradient(180deg, transparent 30%, rgba(0,0,0,.72)); }
+  .proj-card::before{ content:""; position:absolute; inset:0; background: linear-gradient(180deg, rgba(0,0,0,.15) 0%, rgba(0,0,0,.35) 35%, rgba(0,0,0,.88) 100%); }
+  .proj-card{ background-size:cover; background-position: top center; }
   .proj-card .pc-name{ position:relative; font-size:19px; font-weight:800; margin:0 0 4px; z-index:1; }
   .proj-card .pc-tag{ position:relative; font-family:var(--mono); font-size:10.5px; opacity:.85; text-transform:uppercase; letter-spacing:.05em; margin-bottom:8px; z-index:1; }
   .proj-card .pc-desc{ position:relative; font-size:13px; line-height:1.5; opacity:.92; z-index:1; }
   .proj-card .pc-plus{ position:absolute; top:16px; right:16px; width:32px; height:32px; border-radius:50%; background:rgba(255,255,255,.18);
     display:flex; align-items:center; justify-content:center; font-size:18px; z-index:2; }
   .proj-card.locked{ filter: grayscale(.35) brightness(.8); cursor:default; }
+
+  /* Timeline (light theme) */
+  .timeline{ margin: 4px auto 46px; max-width:680px; }
+  .tl-item{ background:#fff; border-radius:16px; border-left:5px solid var(--blue); padding:16px 22px; margin-bottom:12px; box-shadow:0 4px 14px rgba(0,0,0,.05); }
+  .tl-when{ font-family:var(--mono); font-size:11px; color:var(--blue); margin-bottom:3px; }
+  .tl-role{ font-size:15.5px; font-weight:800; margin:0 0 2px; }
+  .tl-org{ font-size:13px; color:var(--mid); margin:0 0 4px; }
+  .tl-detail{ font-size:12.5px; color:var(--dim); line-height:1.55; max-width:56ch; }
+
+  /* Project story accordions (light theme) */
+  .stories-title{ font-size:16px; font-weight:800; margin: 34px 0 18px; text-align:center; color:var(--mid); position:relative; padding-top:24px; }
+  .stories-title::before{ content:""; position:absolute; top:0; left:50%; transform:translateX(-50%); width:60px; height:2px; background: var(--blue); opacity:.4; }
+  .story-item{ border:1.5px solid #E4E4E2; border-radius:16px; margin-bottom:12px; overflow:hidden; background:#fff; max-width:760px; margin-left:auto; margin-right:auto; }
+  .story-head{ display:flex; justify-content:space-between; align-items:center; padding:15px 20px; cursor:pointer; font-weight:700; font-size:14.5px; }
+  .story-head .plus{ font-size:19px; color:var(--dim); transition: transform .2s; }
+  .story-item.open .plus{ transform: rotate(45deg); }
+  .story-body{ display:none; padding: 2px 20px 16px; background:#F8F8F7; }
+  .story-item.open .story-body{ display:block; }
+  .story-stage{ margin-top:11px; }
+  .story-stage .k{ font-family:var(--mono); font-size:10px; letter-spacing:.08em; text-transform:uppercase; color:var(--blue); margin-bottom:3px; }
+  .story-stage p{ font-size:13px; line-height:1.6; color:var(--ink); margin:0; }
 
   .about-card{ background:#15151A; border-radius:28px; padding:44px 36px; text-align:center; max-width:640px; margin: 0 auto; }
   .avatar{ width:88px; height:88px; border-radius:50%; background: linear-gradient(150deg, #3B5FE0, #7C6FF0); margin:0 auto 18px;
@@ -104,8 +154,12 @@
   <section class="page active" id="home">
     <div class="hero">
       <div class="hero-social">
-        <a href="https://linkedin.com/in/yadnaishwari-gaikwad" target="_blank" rel="noopener" title="LinkedIn">in</a>
-        <a href="mailto:yadnaishwari.gaikwad@gmail.com" title="Email">@</a>
+        <a href="https://linkedin.com/in/yadnaishwari-gaikwad" target="_blank" rel="noopener" title="LinkedIn">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.03-1.85-3.03-1.85 0-2.14 1.44-2.14 2.94v5.66H9.36V9h3.41v1.56h.05c.48-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45z"/></svg>
+        </a>
+        <a href="mailto:yadnaishwari.gaikwad@gmail.com" title="Email">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
+        </a>
       </div>
       <div>
         <div class="hero-name">Yadnaishwari Gaikwad</div>
@@ -113,7 +167,6 @@
         <div class="hero-edu">MSIS, Kelley School of Business - Indiana University Bloomington</div>
       </div>
     </div>
-    <p class="home-note">Send me a real photo whenever you're ready and I'll drop it into this hero - I won't fabricate one.</p>
   </section>
 
   <section class="page" id="experience">
@@ -154,6 +207,31 @@
         <div class="skill-row"><span>Microsoft Certified: Azure Fundamentals</span><span class="lvl"></span></div>
         <div class="skill-row"><span>Product Management: Building a Product Roadmap</span><span class="lvl"></span></div>
         <div class="skill-row"><span>EY Cloud &amp; Analytics (Bronze)</span><span class="lvl"></span></div>
+      </div>
+    </div>
+
+    <h2 class="subtitle">My Path</h2>
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-when">Sep 2023 - Present</div>
+        <div class="tl-role">Senior Delivery AI Product Analyst</div>
+        <div class="tl-org">Boston Consulting Group, Chicago, IL</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-when">Jul 2022 - Jun 2023</div>
+        <div class="tl-role">Senior Consultant, IT Solutions</div>
+        <div class="tl-org">Ernst &amp; Young, Chicago, IL</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-when">2021 - 2022</div>
+        <div class="tl-role">MS, Information Systems</div>
+        <div class="tl-org">Kelley School of Business, Indiana University</div>
+        <div class="tl-detail">The pivot point between hands-on engineering support and consulting delivery.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-when">Jun 2018 - May 2021</div>
+        <div class="tl-role">Engineering Support Analyst</div>
+        <div class="tl-org">BNP Paribas ISPL, Mumbai, India</div>
       </div>
     </div>
 
@@ -199,13 +277,13 @@
       <div class="proj-section-title">Professional</div>
       <div class="proj-section-sub">AI product work - tools that make delivery and data quality real, not just discussed.</div>
       <div class="proj-grid">
-        <a class="proj-card" href="https://www.resumebuild.store/" target="_blank" style="background: linear-gradient(150deg,#1B1F2E,#3B5FE0);">
+        <a class="proj-card" href="https://www.resumebuild.store/" target="_blank" style="background-image: url('careerpilot-shot.png'); background-position: top center;">
           <span class="pc-plus">+</span>
           <span class="pc-name">CareerPilot</span>
           <span class="pc-tag">AI - Job Search Platform</span>
           <span class="pc-desc">An agentic job-application platform - works through an approved batch overnight across LinkedIn, Greenhouse/Lever, company portals, and Workday, with firm autonomy boundaries: always pausing for sponsorship, work authorization, and anything unclear or blocked. Invite-only (runs on live AI tokens).</span>
         </a>
-        <a class="proj-card" href="https://yadnaishwari.github.io/Annotation-quality-lab/" target="_blank" style="background: linear-gradient(150deg,#2E2A1B,#C6892E);">
+        <a class="proj-card" href="https://yadnaishwari.github.io/Annotation-quality-lab/" target="_blank" style="background-image: url('annotation-shot.png'); background-position: top center;">
           <span class="pc-plus">+</span>
           <span class="pc-name">Annotation Quality Lab</span>
           <span class="pc-tag">AI - Data Quality</span>
@@ -219,10 +297,38 @@
         </div>
       </div>
 
-      <div class="proj-section-title">Personal Builds</div>
+      <p class="stories-title">Read the story behind each build &darr;</p>
+      <details class="story-item">
+        <summary class="story-head">CareerPilot - the full story <span class="plus">+</span></summary>
+        <div class="story-body">
+          <div class="story-stage"><div class="k">Problem</div><p>Job searching means tailoring a resume and re-filling nearly identical application forms across dozens of different portals - slow, repetitive, and easy to get inconsistent.</p></div>
+          <div class="story-stage"><div class="k">Approach</div><p>Design an agent with clear autonomy boundaries: safe to fill common fields on its own, but it always stops for sponsorship, work authorization, legal attestations, logins, CAPTCHAs, or a question it hasn't seen before.</p></div>
+          <div class="story-stage"><div class="k">Build</div><p>A platform combining resume tailoring, ATS scoring, application tracking, an overnight agentic batch-runner across LinkedIn, Greenhouse/Lever, career pages, and Workday, plus a Chrome companion and an AI chat assistant.</p></div>
+          <div class="story-stage"><div class="k">Outcome</div><p>In progress - invite-only, since it runs on live AI tokens. Reach out for a demo.</p></div>
+        </div>
+      </details>
+      <details class="story-item">
+        <summary class="story-head">Annotation Quality Lab - the full story <span class="plus">+</span></summary>
+        <div class="story-body">
+          <div class="story-stage"><div class="k">Problem</div><p>Most quick labeling exercises never measure whether the labels can actually be trusted - two people can agree with each other and both be wrong.</p></div>
+          <div class="story-stage"><div class="k">Approach</div><p>Write a rubric with a deliberate tie-break rule and a hard "factual errors default to Poor" rule, and hold out a gold set to separate agreement from accuracy.</p></div>
+          <div class="story-stage"><div class="k">Build</div><p>A self-contained tool that computes Cohen's kappa, accuracy against the gold set, label distribution, and surfaces a disagreement queue for adjudication.</p></div>
+          <div class="story-stage"><div class="k">Outcome</div><p>Shipped and hosted - a working demonstration of the data-quality machinery behind human-in-the-loop AI.</p></div>
+        </div>
+      </details>
+      <details class="story-item">
+        <summary class="story-head">Org-Design Diagnostic Skill - the full story <span class="plus">+</span></summary>
+        <div class="story-body">
+          <div class="story-stage"><div class="k">Problem</div><p>Case teams without platform access were manually uploading raw client HRIS data into Claude to run diagnostics ad hoc - skipping validation and raising data-handling questions.</p></div>
+          <div class="story-stage"><div class="k">Approach</div><p>Scoped the ambiguity into a structured ask: defined validation rules and a hard requirement that HRIS data never leave the consultant's own machine.</p></div>
+          <div class="story-stage"><div class="k">Build</div><p>Partnered with engineering to validate against the real product, then built a Claude Skill launching a locally-running, Claude-built diagnostic tool - all analysis on-device.</p></div>
+          <div class="story-stage"><div class="k">Outcome</div><p>~50% faster diagnostics, now in active use by case teams without platform access. Details confidential to BCG.</p></div>
+        </div>
+      </details>
+
       <div class="proj-section-sub">Small, real software I ship for myself - proof I build fast, end to end, for the fun of it.</div>
       <div class="proj-grid">
-        <a class="proj-card" href="https://aaj-ki-taaza-khabar.vercel.app/" target="_blank" style="background: linear-gradient(150deg,#3D2F22,#A8402B);">
+        <a class="proj-card" href="https://aaj-ki-taaza-khabar.vercel.app/" target="_blank" style="background-image: url('lifeos-shot.png'); background-position: top center;">
           <span class="pc-plus">+</span>
           <span class="pc-name">Life OS</span>
           <span class="pc-tag">Personal - Daily Life</span>
@@ -234,13 +340,42 @@
           <span class="pc-tag">Personal - Study Tool</span>
           <span class="pc-desc">Flashcards, quiz mode, and a timed exam simulator built to actually pass the Illinois DMV written test - signs, right-of-way, and every number they ask.</span>
         </a>
-        <a class="proj-card" href="https://gommigoomi.vercel.app/" target="_blank" style="background: linear-gradient(150deg,#241B2E,#7C6FF0);">
+        <a class="proj-card" href="https://gommigoomi.vercel.app/" target="_blank" style="background-image: url('tripplanner-shot.png'); background-position: top center;">
           <span class="pc-plus">+</span>
           <span class="pc-name">Trip Planner</span>
           <span class="pc-tag">Personal - Travel</span>
           <span class="pc-desc">A day-by-day city itinerary tool - drag-to-reorder stops, transit notes, map links, and local tips, for trips planned properly instead of in a group chat.</span>
         </a>
       </div>
+
+      <p class="stories-title">Read the story behind each build &darr;</p>
+      <details class="story-item">
+        <summary class="story-head">Life OS - the full story <span class="plus">+</span></summary>
+        <div class="story-body">
+          <div class="story-stage"><div class="k">Problem</div><p>Deciding what to wear and what to eat quietly eats real time every single morning.</p></div>
+          <div class="story-stage"><div class="k">Approach</div><p>Put closet inventory and meal planning in one place instead of two disconnected mental lists.</p></div>
+          <div class="story-stage"><div class="k">Build</div><p>A React app for outfit building, closet inventory, and meal prep, with a guided setup flow.</p></div>
+          <div class="story-stage"><div class="k">Outcome</div><p>Shipped and live - genuinely used, not just built.</p></div>
+        </div>
+      </details>
+      <details class="story-item">
+        <summary class="story-head">Illinois Rules of the Road - the full story <span class="plus">+</span></summary>
+        <div class="story-body">
+          <div class="story-stage"><div class="k">Problem</div><p>Passing the Illinois DMV written test cold is stressful, and easy to fail on trivia you didn't know to study.</p></div>
+          <div class="story-stage"><div class="k">Approach</div><p>Structure the real exam content into flashcards and a realistic, timed simulation instead of a static PDF.</p></div>
+          <div class="story-stage"><div class="k">Build</div><p>A study app with flashcards, quiz mode, and a timed exam simulator.</p></div>
+          <div class="story-stage"><div class="k">Outcome</div><p>Shipped and live.</p></div>
+        </div>
+      </details>
+      <details class="story-item">
+        <summary class="story-head">Trip Planner - the full story <span class="plus">+</span></summary>
+        <div class="story-body">
+          <div class="story-stage"><div class="k">Problem</div><p>Trip planning usually lives scattered across a group chat - no single source of truth for stops, transit, or tips.</p></div>
+          <div class="story-stage"><div class="k">Approach</div><p>Give each day of the trip its own editable, reorderable plan.</p></div>
+          <div class="story-stage"><div class="k">Build</div><p>A day-by-day itinerary tool with drag-to-reorder stops, transit notes, map links, and local tips.</p></div>
+          <div class="story-stage"><div class="k">Outcome</div><p>Shipped and live.</p></div>
+        </div>
+      </details>
     </div>
   </section>
 
