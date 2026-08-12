@@ -49,7 +49,6 @@
     .wrap{ padding: 20px 18px 70px; }
     .hero{ min-height: 190px; padding: 28px; border-radius:20px; }
     .about-card{ padding:32px 24px; }
-    .job-card, .tl-item{ padding:18px 20px; }
     .full-bleed{ padding: 0 18px; }
     .proj-grid{ grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap:14px; }
   }
@@ -91,18 +90,6 @@
   .skill-row:last-child{ border-bottom:none; }
   .skill-row .lvl{ font-family:var(--mono); font-size:12px; color:var(--dim); }
 
-  .job-card{ background:var(--card); border:1px solid var(--border); border-left:5px solid var(--blue); border-radius:16px; padding:22px 26px; margin-bottom:16px; box-shadow:0 4px 14px rgba(34,21,18,.06);
-    transition: transform .4s cubic-bezier(.16,1,.3,1), box-shadow .4s cubic-bezier(.16,1,.3,1); }
-  .job-card:hover{ transform: translateY(-3px); box-shadow:0 10px 22px rgba(34,21,18,.1); }
-  .job-role{ font-size:19px; font-weight:800; margin:0 0 4px; }
-  .job-org{ font-size:14.5px; color:var(--mid); margin:0 0 2px; }
-  .job-dates{ font-family:var(--mono); font-size:12.5px; color:var(--dim); margin:0 0 10px; }
-  .job-highlight{ font-size:14px; color:var(--ink); background:var(--blue-soft); display:inline-block; padding:4px 10px; border-radius:8px; }
-  .job-bullets{ margin:0; padding-left:20px; }
-  .job-bullets li{ font-size:14px; line-height:1.55; color:var(--ink); margin-bottom:7px; }
-  .job-bullets li:last-child{ margin-bottom:0; }
-  .job-bullets b{ color:var(--blue); }
-
   .full-bleed{ width:100vw; margin-left:calc(-50vw + 50%); padding: 0 32px; }
   .proj-section-title{ text-align:center; font-size:20px; font-weight:800; margin: 6px 0 4px; }
   .proj-section-sub{ text-align:center; font-size:13px; color:var(--dim); margin: 0 0 26px; }
@@ -132,25 +119,6 @@
     padding-top:12px; border-top:1px dashed var(--border); display:flex; align-items:center; gap:4px; }
   .pc-visit:hover{ text-decoration:underline; }
 
-  /* Timeline (light theme) */
-  .timeline{ margin: 4px auto 46px; }
-  .tl-item{ background:var(--card); border:1px solid var(--border); border-left:5px solid var(--blue); border-radius:16px; padding:16px 22px; margin-bottom:12px; box-shadow:0 4px 14px rgba(34,21,18,.06);
-    transition: transform .4s cubic-bezier(.16,1,.3,1), box-shadow .4s cubic-bezier(.16,1,.3,1); }
-  .tl-item:hover{ transform: translateY(-3px); box-shadow:0 10px 22px rgba(34,21,18,.1); }
-  .tl-item[open]{ padding-bottom:18px; }
-  .tl-when{ font-family:var(--mono); font-size:11px; color:var(--blue); margin-bottom:3px; }
-  .tl-role{ font-family:var(--sans-display); font-size:16.5px; font-weight:700; margin:0 0 2px; }
-  .tl-org{ font-size:13px; color:var(--mid); margin:0 0 4px; }
-  .tl-detail{ font-size:12.5px; color:var(--dim); line-height:1.55; max-width:56ch; }
-  .tl-summary{ list-style:none; cursor:pointer; display:flex; justify-content:space-between; align-items:flex-start; gap:12px; }
-  .tl-summary::-webkit-details-marker{ display:none; }
-  .tl-summary-text{ flex:1; min-height:64px; }
-  .tl-headline{ font-size:13px; color:var(--ink); font-weight:600; margin-top:6px; }
-  .tl-caret{ font-family:var(--mono); font-size:18px; color:var(--dim); flex-shrink:0; transition: transform .2s; margin-top:2px; visibility:visible; }
-  .tl-caret.tl-caret-spacer{ visibility:hidden; }
-  .tl-item[open] .tl-caret{ transform: rotate(45deg); }
-  .tl-expand{ margin-top:12px; padding-top:12px; border-top:1px dashed var(--border); }
-
   /* Project story accordions (light theme) */
   .story-item{ border:1.5px solid var(--border); border-radius:16px; margin-bottom:12px; overflow:hidden; background:var(--card); max-width:760px; margin-left:auto; margin-right:auto; }
   .story-head{ display:flex; justify-content:space-between; align-items:center; padding:15px 20px; cursor:pointer; font-weight:700; font-size:14.5px; }
@@ -173,6 +141,9 @@
   .journey-section{ margin-top:44px; }
   .journey-title{ font-family:var(--sans-display); text-align:center; font-size:clamp(19px,3.5vw,24px); font-weight:700; margin:0 0 8px; }
   .journey-sub{ text-align:center; font-size:13px; color:var(--dim); margin:0 0 30px; }
+  .journey-controls{ text-align:center; font-family:var(--mono); font-size:12px; color:var(--dim); opacity:0; height:0; overflow:hidden;
+    transition: opacity .5s ease; margin:-14px 0 24px; }
+  .journey-controls.ready{ opacity:1; height:auto; overflow:visible; }
   .journey-wrap{ position:relative; width:100%; height:600px; margin:0 auto; }
   .journey-wrap svg{ position:absolute; inset:0; width:100%; height:100%; display:block; }
   .journey-pin{ position:absolute; width:40px; height:40px; --shift:26px; transform:translate(-50%,-50%); z-index:2;
@@ -180,6 +151,7 @@
     filter:drop-shadow(0 3px 5px rgba(34,21,18,.15)); }
   .journey-pin.shift-down{ transform:translate(-50%, calc(-50% + var(--shift))); }
   .journey-pin.shift-up{ transform:translate(-50%, calc(-50% - var(--shift))); }
+  .journey-pin.active-stop img, .journey-pin.active-stop svg{ box-shadow:0 0 0 4px var(--blue-soft), 0 2px 5px rgba(34,21,18,.25); border-radius:8px; }
   .journey-pin svg{ display:block; width:34px; height:34px; }
   .journey-pin img{ display:block; width:34px; height:34px; object-fit:contain; border-radius:8px; box-shadow:0 2px 5px rgba(34,21,18,.25); }
   .journey-pin.now{ color:var(--teal); }
@@ -188,13 +160,63 @@
   @keyframes journey-pulse{ 0%{ transform:scale(.6); opacity:.7; } 100%{ transform:scale(1.7); opacity:0; } }
   @media (prefers-reduced-motion: reduce){ .journey-pin.now::after{ animation:none; } }
   .journey-card{ position:absolute; width:196px; background:var(--card); border:1px solid var(--border); border-top:3px solid var(--blue);
-    border-radius:16px; padding:14px 16px 15px;
-    box-shadow:0 10px 26px rgba(34,21,18,.14); z-index:2; --gap:48px; }
+    border-radius:16px; padding:14px 16px 15px; cursor:pointer;
+    box-shadow:0 10px 26px rgba(34,21,18,.14); z-index:2; --gap:48px;
+    transition: box-shadow .3s ease; }
   .journey-card.above{ transform:translate(-50%, calc(-100% - var(--gap))); }
   .journey-card.below{ transform:translate(-50%, var(--gap)); }
+  .journey-card.active-stop{ box-shadow:0 0 0 3px var(--blue-soft), 0 10px 26px rgba(34,21,18,.14); }
   .journey-card.now{ border:1px solid var(--border); border-top:3px solid var(--teal); }
+  .journey-card.now.active-stop{ box-shadow:0 0 0 3px var(--teal-soft), 0 10px 26px rgba(34,21,18,.14); }
   .journey-eyebrow{ font-family:var(--mono); font-size:10px; letter-spacing:.1em; color:var(--blue); font-weight:700; margin-bottom:5px; }
   .journey-card.now .journey-eyebrow{ color:#fff; background:var(--teal); display:inline-block; padding:2px 7px; border-radius:6px; }
+
+  /* Full-screen spotlight modal */
+  .journey-spotlight-overlay{ position:fixed; inset:0; background:rgba(15,10,8,.62); z-index:100; opacity:0; pointer-events:none;
+    transition:opacity .45s ease, backdrop-filter .45s ease; backdrop-filter:blur(0px);
+    display:flex; align-items:center; justify-content:center; padding:24px; }
+  .journey-spotlight-overlay.show{ opacity:1; pointer-events:auto; backdrop-filter:blur(3px); }
+  .journey-spotlight-close{ position:absolute; top:18px; right:18px; width:34px; height:34px; border-radius:50%;
+    background:var(--card2); border:1px solid var(--border); cursor:pointer; font-size:15px; color:var(--mid); z-index:2;
+    transition: transform .3s cubic-bezier(.34,1.56,.64,1), background .25s ease, color .25s ease; }
+  .journey-spotlight-close:hover{ transform:rotate(90deg); background:var(--blue-soft); color:var(--blue); }
+  .journey-spotlight-card{ position:relative; max-width:520px; width:100%; max-height:82vh; overflow-y:auto;
+    background:var(--card); border-radius:22px; padding:34px 32px; box-shadow:0 30px 70px rgba(0,0,0,.4);
+    transform:scale(.82) translateY(28px); opacity:0;
+    transition:transform .5s cubic-bezier(.34,1.56,.64,1), opacity .35s ease; display:none; }
+  .journey-spotlight-card.show{ display:block; opacity:1; transform:scale(1) translateY(0); }
+
+  @keyframes spotIn{ from{ opacity:0; transform:translateY(14px); } to{ opacity:1; transform:translateY(0); } }
+  .journey-spotlight-card :is(.js-spot-logo,.js-spot-eyebrow,.js-spot-date,.js-spot-role,.js-spot-org,.js-spot-desc,.js-spot-bullets li){
+    opacity:0; }
+  .journey-spotlight-card.show .js-spot-logo{ animation:spotIn .5s cubic-bezier(.16,1,.3,1) .08s both; }
+  .journey-spotlight-card.show .js-spot-eyebrow{ animation:spotIn .5s cubic-bezier(.16,1,.3,1) .16s both; }
+  .journey-spotlight-card.show .js-spot-date{ animation:spotIn .5s cubic-bezier(.16,1,.3,1) .22s both; }
+  .journey-spotlight-card.show .js-spot-role{ animation:spotIn .5s cubic-bezier(.16,1,.3,1) .28s both; }
+  .journey-spotlight-card.show .js-spot-org{ animation:spotIn .5s cubic-bezier(.16,1,.3,1) .34s both; }
+  .journey-spotlight-card.show .js-spot-desc{ animation:spotIn .5s cubic-bezier(.16,1,.3,1) .42s both; }
+  .journey-spotlight-card.show .js-spot-bullets li:nth-child(1){ animation:spotIn .5s cubic-bezier(.16,1,.3,1) .42s both; }
+  .journey-spotlight-card.show .js-spot-bullets li:nth-child(2){ animation:spotIn .5s cubic-bezier(.16,1,.3,1) .50s both; }
+  .journey-spotlight-card.show .js-spot-bullets li:nth-child(3){ animation:spotIn .5s cubic-bezier(.16,1,.3,1) .58s both; }
+  .journey-spotlight-card.show .js-spot-bullets li:nth-child(4){ animation:spotIn .5s cubic-bezier(.16,1,.3,1) .66s both; }
+  @media (prefers-reduced-motion: reduce){
+    .journey-spotlight-card :is(.js-spot-logo,.js-spot-eyebrow,.js-spot-date,.js-spot-role,.js-spot-org,.js-spot-desc,.js-spot-bullets li){
+      animation:none !important; opacity:1 !important; transform:none !important; }
+    .journey-spotlight-card{ transition:none !important; }
+    .journey-spotlight-overlay{ transition:none !important; }
+  }
+
+  .js-spot-logo{ display:block; width:52px; height:52px; object-fit:contain; border-radius:11px; margin-bottom:16px; box-shadow:0 4px 10px rgba(34,21,18,.22); }
+  .js-spot-eyebrow{ font-family:var(--mono); font-size:11px; letter-spacing:.1em; color:var(--blue); font-weight:700; margin-bottom:8px; }
+  .journey-spotlight-card.now .js-spot-eyebrow{ color:var(--teal); }
+  .js-spot-date{ font-family:var(--mono); font-size:13px; color:var(--dim); margin-bottom:6px; }
+  .js-spot-role{ font-family:var(--sans-display); font-size:23px; font-weight:700; margin:0 0 4px; letter-spacing:-.01em; }
+  .js-spot-org{ font-size:15px; color:var(--mid); margin-bottom:20px; }
+  .js-spot-bullets{ margin:0; padding-left:19px; }
+  .js-spot-bullets li{ font-size:14.5px; line-height:1.6; color:var(--ink); margin-bottom:10px; }
+  .js-spot-bullets li:last-child{ margin-bottom:0; }
+  .js-spot-bullets b{ color:var(--blue); }
+  .js-spot-desc{ font-size:15px; line-height:1.6; color:var(--ink); margin:0; }
   .journey-date{ font-family:var(--mono); font-size:11px; color:var(--dim); margin-bottom:3px; }
   .journey-role{ font-size:13.5px; font-weight:800; margin:0 0 2px; line-height:1.25; }
   .journey-org{ font-size:12px; color:var(--mid); }
@@ -206,7 +228,7 @@
   .stop-fade.in{ opacity:1; }
 
   .journey-stack{ display:none; max-width:440px; margin:0 auto; }
-  .js-row{ position:relative; padding-left:46px; padding-bottom:32px; border-left:2px dashed #D7DBE3; margin-left:18px; }
+  .js-row{ position:relative; padding-left:46px; padding-bottom:32px; border-left:2px dashed #D7DBE3; margin-left:18px; cursor:pointer; }
   .js-row:last-child{ border-left-color:transparent; padding-bottom:0; }
   .js-pin{ position:absolute; left:-19px; top:-2px; width:38px; height:38px; border-radius:50%; background:var(--card); border:1.5px solid var(--border);
     color:var(--blue); display:flex; align-items:center; justify-content:center; box-shadow:0 4px 10px rgba(34,21,18,.15); overflow:hidden; }
@@ -243,7 +265,6 @@
   <nav>
     <div class="pillnav">
       <button data-page="home" class="active">Home</button>
-      <button data-page="experience">Experience</button>
       <button data-page="projects">Projects</button>
       <button data-page="about">About</button>
     </div>
@@ -269,6 +290,7 @@
     <div class="journey-section">
       <h2 class="journey-title">The Road So Far</h2>
       <p class="journey-sub">Five stops, one thread: hands-on engineering that grew into leading AI product delivery.</p>
+      <div class="journey-controls" id="journeyControls">Tap any stop above to revisit the details.</div>
 
       <div class="journey-wrap">
         <svg viewBox="0 0 1200 420" preserveAspectRatio="none">
@@ -305,9 +327,9 @@
             <circle cx="11" cy="7.5" r="5.6" fill="url(#wheelGrad)"/>
             <circle cx="11" cy="7.5" r="2.1" fill="#b9b9be"/>
             <circle cx="19.5" cy="-1" r="1.7" fill="#FFE9A8"/>
-            <animateMotion id="journeyCarMotion" dur="13s" fill="freeze" begin="indefinite" rotate="auto" calcMode="linear"
+            <animateMotion id="journeyCarMotion" dur="28s" fill="freeze" begin="indefinite" rotate="auto" calcMode="linear"
               keyPoints="0; .05; .05; .275; .275; .5; .5; .725; .725; .95; .95"
-              keyTimes="0; .10; .20; .32; .40; .50; .58; .70; .78; .90; 1">
+              keyTimes="0; .0571; .2; .2571; .4; .4571; .6; .6571; .8; .8571; 1">
               <mpath href="#roadPath"/>
             </animateMotion>
           </g>
@@ -365,35 +387,35 @@
       </div>
 
       <div class="journey-stack">
-        <div class="js-row">
+        <div class="js-row" data-stop="1">
           <div class="js-pin"><img src="mumbai-university-logo.png" alt="Mumbai University"></div>
           <div class="js-eyebrow">STOP 01</div>
           <div class="js-date">May 2018</div>
           <div class="js-role">BE, Computer Engineering</div>
           <div class="js-org">Mumbai University</div>
         </div>
-        <div class="js-row">
+        <div class="js-row" data-stop="2">
           <div class="js-pin"><img src="bnp-paribas-logo.png" alt="BNP Paribas"></div>
           <div class="js-eyebrow">STOP 02</div>
           <div class="js-date">Jun 2018 - May 2021</div>
           <div class="js-role">Engineering Support Analyst</div>
           <div class="js-org">BNP Paribas ISPL, Mumbai</div>
         </div>
-        <div class="js-row">
+        <div class="js-row" data-stop="3">
           <div class="js-pin"><img src="indiana-university-logo.png" alt="Indiana University"></div>
           <div class="js-eyebrow">STOP 03</div>
           <div class="js-date">2021 - 2022</div>
           <div class="js-role">MS, Information Systems</div>
           <div class="js-org">Kelley School of Business</div>
         </div>
-        <div class="js-row">
+        <div class="js-row" data-stop="4">
           <div class="js-pin"><img src="ey-logo.png" alt="EY"></div>
           <div class="js-eyebrow">STOP 04</div>
           <div class="js-date">Jul 2022 - Jun 2023</div>
           <div class="js-role">Senior Consultant, IT Solutions</div>
           <div class="js-org">Ernst &amp; Young, Chicago</div>
         </div>
-        <div class="js-row now">
+        <div class="js-row now" data-stop="5">
           <div class="js-pin"><img src="bcg-logo.png" alt="BCG"></div>
           <div class="js-eyebrow">NOW</div>
           <div class="js-date">Sep 2023 - Present</div>
@@ -402,11 +424,69 @@
         </div>
       </div>
 
-    </div>
-  </section>
+      <div class="journey-spotlight-overlay" id="journeySpotlight">
+        <button type="button" class="journey-spotlight-close" id="journeySpotlightClose" aria-label="Close">&times;</button>
 
-  <section class="page" id="experience">
-    <h1 class="pagetitle">Skills</h1>
+        <div class="journey-spotlight-card" data-spot="1">
+          <img class="js-spot-logo" src="mumbai-university-logo.png" alt="Mumbai University">
+          <div class="js-spot-eyebrow">STOP 01</div>
+          <div class="js-spot-date">May 2018</div>
+          <div class="js-spot-role">BE, Computer Engineering</div>
+          <div class="js-spot-org">Mumbai University</div>
+          <p class="js-spot-desc">Where it started - the technical foundation everything after was built on.</p>
+        </div>
+
+        <div class="journey-spotlight-card" data-spot="2">
+          <img class="js-spot-logo" src="bnp-paribas-logo.png" alt="BNP Paribas">
+          <div class="js-spot-eyebrow">STOP 02</div>
+          <div class="js-spot-date">Jun 2018 - May 2021</div>
+          <div class="js-spot-role">Engineering Support Analyst</div>
+          <div class="js-spot-org">BNP Paribas ISPL, Mumbai, India</div>
+          <ul class="js-spot-bullets">
+            <li><b>Ran</b> reconciliation operations for a global bank on a platform processing <b>~1M transactions/day</b> across three continents, resolving ~60 critical issues weekly.</li>
+            <li><b>Automated</b> recurring processes with RPA (Blue Prism), SQL, and scripts, cutting execution time up to <b>90%</b> and raising team productivity <b>50%</b>.</li>
+          </ul>
+        </div>
+
+        <div class="journey-spotlight-card" data-spot="3">
+          <img class="js-spot-logo" src="indiana-university-logo.png" alt="Indiana University">
+          <div class="js-spot-eyebrow">STOP 03</div>
+          <div class="js-spot-date">2021 - 2022</div>
+          <div class="js-spot-role">MS, Information Systems</div>
+          <div class="js-spot-org">Kelley School of Business, Indiana University</div>
+          <p class="js-spot-desc">Where hands-on engineering met consulting delivery.</p>
+        </div>
+
+        <div class="journey-spotlight-card" data-spot="4">
+          <img class="js-spot-logo" src="ey-logo.png" alt="EY">
+          <div class="js-spot-eyebrow">STOP 04</div>
+          <div class="js-spot-date">Jul 2022 - Jun 2023</div>
+          <div class="js-spot-role">Senior Consultant, IT Solutions</div>
+          <div class="js-spot-org">Ernst &amp; Young, Chicago, IL</div>
+          <ul class="js-spot-bullets">
+            <li><b>Orchestrated</b> the end-to-end migration program for <b>14 applications</b>, driving cross-stakeholder alignment to a <b>95%</b> on-time completion rate.</li>
+            <li><b>Defined and rolled out</b> a scalable Data Mesh framework for data-product development, cutting implementation timelines <b>30%</b> and improving operational efficiency <b>20%</b>.</li>
+          </ul>
+        </div>
+
+        <div class="journey-spotlight-card now" data-spot="5">
+          <img class="js-spot-logo" src="bcg-logo.png" alt="BCG">
+          <div class="js-spot-eyebrow">NOW</div>
+          <div class="js-spot-date">Sep 2023 - Present</div>
+          <div class="js-spot-role">Senior Delivery AI Product Analyst</div>
+          <div class="js-spot-org">Boston Consulting Group, Chicago, IL</div>
+          <ul class="js-spot-bullets">
+            <li><b>Owned</b> the end-to-end org-design workstream and OrgBuilder&trade; delivery across <b>~20 Fortune 500 engagements</b> in 4 industries, delivering <b>~$35-37M+</b> in value per client.</li>
+            <li><b>Built and shipped</b> a Claude Skill end-to-end - scoping, spec, and build - cutting analysis time <b>~50%</b>, now in active use across case teams.</li>
+            <li><b>Developed</b> 2-3 executive dashboards per engagement, cutting the team's reporting prep time <b>~20%</b> and improving accuracy.</li>
+            <li><b>Drove</b> solution adoption through ~10 client workshops of 20-50 users each, lifting adoption <b>~40%</b> and engagement <b>~50%</b>.</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+
+    <h2 class="subtitle">Skills</h2>
 
     <div class="accordion-item">
       <div class="accordion-head">Program &amp; Delivery<span class="plus">+</span></div>
@@ -444,79 +524,6 @@
         <div class="skill-row"><span>Product Management: Building a Product Roadmap</span><span class="lvl"></span></div>
         <div class="skill-row"><span>EY Cloud &amp; Analytics (Bronze)</span><span class="lvl"></span></div>
       </div>
-    </div>
-
-    <h2 class="subtitle">Experience</h2>
-    <div class="timeline">
-
-      <details class="tl-item">
-        <summary class="tl-summary">
-          <div class="tl-summary-text">
-            <div class="tl-when">Sep 2023 - Present</div>
-            <div class="tl-role">Senior Delivery AI Product Analyst</div>
-            <div class="tl-org">Boston Consulting Group, Chicago, IL</div>
-            <div class="tl-headline">Turned ambiguous org problems into ~$35-37M+ value stories, 20 times over.</div>
-          </div>
-          <span class="tl-caret">+</span>
-        </summary>
-        <div class="tl-expand">
-          <ul class="job-bullets">
-            <li><b>Owned</b> the end-to-end org-design workstream and OrgBuilder&trade; delivery across <b>~20 Fortune 500 engagements</b> in 4 industries, delivering <b>~$35-37M+</b> in value per client.</li>
-            <li><b>Built and shipped</b> a Claude Skill end-to-end - scoping, spec, and build - cutting analysis time <b>~50%</b>, now in active use across case teams.</li>
-            <li><b>Developed</b> 2-3 executive dashboards per engagement, cutting the team's reporting prep time <b>~20%</b> and improving accuracy.</li>
-            <li><b>Drove</b> solution adoption through ~10 client workshops of 20-50 users each, lifting adoption <b>~40%</b> and engagement <b>~50%</b>.</li>
-          </ul>
-        </div>
-      </details>
-
-      <details class="tl-item">
-        <summary class="tl-summary">
-          <div class="tl-summary-text">
-            <div class="tl-when">Jul 2022 - Jun 2023</div>
-            <div class="tl-role">Senior Consultant, IT Solutions</div>
-            <div class="tl-org">Ernst &amp; Young, Chicago, IL</div>
-            <div class="tl-headline">Migrated 14 applications without missing a beat - 95% on time.</div>
-          </div>
-          <span class="tl-caret">+</span>
-        </summary>
-        <div class="tl-expand">
-          <ul class="job-bullets">
-            <li><b>Orchestrated</b> the end-to-end migration program for <b>14 applications</b>, driving cross-stakeholder alignment to a <b>95%</b> on-time completion rate.</li>
-            <li><b>Defined and rolled out</b> a scalable Data Mesh framework for data-product development, cutting implementation timelines <b>30%</b> and improving operational efficiency <b>20%</b>.</li>
-          </ul>
-        </div>
-      </details>
-
-      <div class="tl-item">
-        <div class="tl-summary">
-          <div class="tl-summary-text">
-            <div class="tl-when">2021 - 2022</div>
-            <div class="tl-role">MS, Information Systems</div>
-            <div class="tl-org">Kelley School of Business, Indiana University</div>
-            <div class="tl-headline">Where hands-on engineering met consulting delivery.</div>
-          </div>
-          <span class="tl-caret tl-caret-spacer">+</span>
-        </div>
-      </div>
-
-      <details class="tl-item">
-        <summary class="tl-summary">
-          <div class="tl-summary-text">
-            <div class="tl-when">Jun 2018 - May 2021</div>
-            <div class="tl-role">Engineering Support Analyst</div>
-            <div class="tl-org">BNP Paribas ISPL, Mumbai, India</div>
-            <div class="tl-headline">Kept a bank's ~1M-transaction-a-day engine running, one reconciliation at a time.</div>
-          </div>
-          <span class="tl-caret">+</span>
-        </summary>
-        <div class="tl-expand">
-          <ul class="job-bullets">
-            <li><b>Ran</b> reconciliation operations for a global bank on a platform processing <b>~1M transactions/day</b> across three continents, resolving ~60 critical issues weekly.</li>
-            <li><b>Automated</b> recurring processes with RPA (Blue Prism), SQL, and scripts, cutting execution time up to <b>90%</b> and raising team productivity <b>50%</b>.</li>
-          </ul>
-        </div>
-      </details>
-
     </div>
   </section>
 
@@ -682,11 +689,61 @@
 
 <script>
 const reduceMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-const REVEAL_SEL = ".hero-name,.hero-sub,.hero-edu,h1.pagetitle,h2.subtitle,.accordion-item,.job-card,.tl-item,.proj-card,.about-card,.journey-title,.journey-sub,.journey-wrap,.js-row";
+const REVEAL_SEL = ".hero-name,.hero-sub,.hero-edu,h1.pagetitle,h2.subtitle,.accordion-item,.proj-card,.about-card,.journey-title,.journey-sub,.journey-wrap,.js-row";
 
 if (reduceMotion) {
   document.querySelectorAll(".stop-fade").forEach(el => { el.style.opacity = "1"; });
+  const controlsRM = document.getElementById("journeyControls");
+  if (controlsRM) controlsRM.classList.add("ready");
 }
+
+const spotlightOverlay = document.getElementById("journeySpotlight");
+
+function setActiveStopPin(wrapEl, stopNum, on) {
+  wrapEl.querySelectorAll('[data-stop="' + stopNum + '"]').forEach(el => {
+    if (el.classList.contains("journey-pin") || el.classList.contains("journey-card")) {
+      el.classList.toggle("active-stop", on);
+    }
+  });
+}
+
+function openSpotlight(stopNum) {
+  if (!spotlightOverlay) return;
+  spotlightOverlay.querySelectorAll(".journey-spotlight-card").forEach(card => {
+    card.classList.toggle("show", card.dataset.spot === String(stopNum));
+  });
+  spotlightOverlay.classList.add("show");
+}
+function closeSpotlight() {
+  if (!spotlightOverlay) return;
+  spotlightOverlay.classList.remove("show");
+  spotlightOverlay.querySelectorAll(".journey-spotlight-card").forEach(card => card.classList.remove("show"));
+  document.querySelectorAll(".journey-pin.active-stop, .journey-card.active-stop").forEach(el => el.classList.remove("active-stop"));
+}
+
+const spotlightCloseBtn = document.getElementById("journeySpotlightClose");
+if (spotlightCloseBtn) spotlightCloseBtn.addEventListener("click", closeSpotlight);
+if (spotlightOverlay) {
+  spotlightOverlay.addEventListener("click", (e) => {
+    if (e.target === spotlightOverlay) closeSpotlight();
+  });
+}
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape") closeSpotlight();
+});
+
+// Clicking any stop on the road opens its spotlight, any time (during or after the tour)
+document.querySelectorAll(".journey-wrap .journey-card, .journey-wrap .journey-pin").forEach(el => {
+  el.addEventListener("click", () => {
+    const wrap = el.closest(".journey-wrap");
+    const stopNum = el.dataset.stop;
+    setActiveStopPin(wrap, stopNum, true);
+    openSpotlight(stopNum);
+  });
+});
+document.querySelectorAll(".journey-stack .js-row").forEach(row => {
+  row.addEventListener("click", () => { openSpotlight(row.dataset.stop); });
+});
 
 function triggerJourneyDrive(wrapEl) {
   const car = wrapEl.querySelector("#journeyCar");
@@ -695,12 +752,27 @@ function triggerJourneyDrive(wrapEl) {
   if (motion && motion.beginElement) {
     try { motion.beginElement(); } catch (e) {}
   }
-  const arrivalsMs = [1300, 4160, 6500, 9100, 11700];
+  const arrivalsMs = [1600, 7200, 12800, 18400, 24000];
+  const departuresMs = [5600, 11200, 16800, 22400];
+
   arrivalsMs.forEach((ms, idx) => {
+    const stopNum = idx + 1;
     setTimeout(() => {
-      wrapEl.querySelectorAll('[data-stop="' + (idx + 1) + '"]').forEach(el => el.classList.add("in"));
+      wrapEl.querySelectorAll('[data-stop="' + stopNum + '"]').forEach(el => el.classList.add("in"));
+      setActiveStopPin(wrapEl, stopNum, true);
+      openSpotlight(stopNum);
     }, ms);
   });
+  departuresMs.forEach((ms) => {
+    setTimeout(() => { closeSpotlight(); }, ms);
+  });
+
+  // Tour finishes at 28s: close the last spotlight and hand control to the person
+  setTimeout(() => {
+    closeSpotlight();
+    const controls = document.getElementById("journeyControls");
+    if (controls) controls.classList.add("ready");
+  }, 28000);
 }
 
 let revealObserver = null;
