@@ -18,7 +18,8 @@
   }
   *{ box-sizing:border-box; }
   body{ margin:0; background:var(--bg); color:var(--ink); font-family:var(--sans); -webkit-font-smoothing:antialiased; }
-  .wrap{ max-width: 1000px; margin:0 auto; padding: 26px 24px 90px; }
+  html, body{ overflow-x:hidden; }
+  .wrap{ max-width: 1100px; margin:0 auto; padding: 26px 24px 90px; }
 
   nav{ display:flex; justify-content:center; margin-bottom: 34px; }
   .pillnav{ display:inline-flex; background:var(--card); border:1px solid var(--border); border-radius:99px; padding:6px; box-shadow:0 4px 16px rgba(34,21,18,.08); gap:4px; }
@@ -32,22 +33,21 @@
   @keyframes fade{ from{ opacity:0; transform:translateY(6px); } to{ opacity:1; transform:translateY(0); } }
 
   .hero{
-    position:relative; border-radius:28px; overflow:hidden; min-height: 240px;
+    position:relative; overflow:hidden;
+    width:100vw; margin-left:calc(-50vw + 50%);
     background: linear-gradient(150deg, #241512 0%, #4A231F 45%, #9E2B2E 100%);
-    display:flex; align-items:flex-end; padding: 40px;
+    display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:16px;
+    padding: 22px 6vw; margin-bottom:22px;
   }
-  .hero::after{ content:""; position:absolute; inset:0; background: linear-gradient(180deg, transparent 45%, rgba(0,0,0,.55)); z-index:0; }
-  .hero-social, .hero > div:not(.hero-social){ position:relative; z-index:1; }
-  .hero-social{ position:absolute; top:22px; left:50%; transform:translateX(-50%); background:rgba(21,21,26,.85);
-    border-radius:99px; padding:10px 18px; display:flex; flex-direction:row; align-items:center; gap:22px; flex-wrap:wrap;
-    justify-content:center; backdrop-filter:blur(4px); }
+  .hero-info{ position:relative; z-index:1; }
+  .hero-social{ position:relative; z-index:1; display:flex; align-items:center; gap:16px; flex-wrap:wrap; }
   .hero-social a{ color:#fff; opacity:.9; text-decoration:none; display:flex; align-items:center; justify-content:center;
-    width:26px; height:26px; transition: opacity .15s, transform .15s; }
+    width:24px; height:24px; transition: opacity .15s, transform .15s; }
   .hero-social a:hover{ opacity:1; transform: scale(1.12); }
   .hero-social svg{ width:100%; height:100%; }
   @media (max-width:768px){
     .wrap{ padding: 20px 18px 70px; }
-    .hero{ min-height: 190px; padding: 28px; border-radius:20px; }
+    .hero{ padding: 20px 5vw; }
     .about-card{ padding:32px 24px; }
     .full-bleed{ padding: 0 18px; }
     .proj-grid{ grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap:14px; }
@@ -56,36 +56,33 @@
     .wrap{ padding: 16px 14px 60px; }
     .pillnav{ padding:5px; gap:2px; }
     .pillnav button{ font-size:12.5px; padding:8px 12px; }
-    .hero{ min-height: 170px; padding: 18px; padding-top:48px; align-items:flex-end; }
-    .hero-name{ font-size: clamp(19px,6.2vw,26px); }
+    .hero{ padding: 18px 5vw; flex-direction:column; align-items:flex-start; }
+    .hero-name{ font-size: clamp(19px,6.2vw,24px); }
     .hero-sub{ font-size:11.5px; }
     .hero-edu{ font-size:10px; }
-    .hero-social{ top:10px; padding:6px 10px; gap:12px; }
-    .hero-social a{ width:18px; height:18px; }
+    .hero-social a{ width:20px; height:20px; }
     .proj-grid{ grid-template-columns: 1fr; }
+    .skills-tabbtn{ font-size:11.5px; padding:12px 6px; }
     .about-card{ padding:26px 18px; }
     .avatar{ width:72px; height:72px; font-size:24px; }
   }
-  .hero-name{ font-family:var(--sans-display); font-size: clamp(34px,6vw,52px); font-weight:700; color:#fff; margin:0 0 6px; letter-spacing:-.025em; }
-  .hero-sub{ font-size:16px; color:rgba(255,255,255,.82); margin:0; font-family:var(--mono); }
-  .hero-edu{ font-size:13px; color:rgba(255,255,255,.6); margin:8px 0 0; font-family:var(--mono); }
+  .hero-name{ font-family:var(--sans-display); font-size: clamp(22px,3.2vw,28px); font-weight:700; color:#fff; margin:0 0 4px; letter-spacing:-.02em; }
+  .hero-sub{ font-size:14px; color:rgba(255,255,255,.85); margin:0; font-family:var(--mono); }
+  .hero-edu{ font-size:11.5px; color:rgba(255,255,255,.6); margin:3px 0 0; font-family:var(--mono); }
 
   h1.pagetitle{ font-family:var(--sans-display); text-align:center; font-size:clamp(26px,5vw,34px); font-weight:700; letter-spacing:-.02em; margin: 10px 0 36px; }
   h2.subtitle{ font-family:var(--sans-display); text-align:center; font-size:clamp(19px,3.5vw,24px); font-weight:700; letter-spacing:-.02em; margin: 50px 0 26px; }
 
-  .accordion-item{ border:1.5px solid var(--border); border-radius:999px; margin-bottom:12px; overflow:hidden; background:var(--card);
-    transition: border-radius .55s cubic-bezier(.16,1,.3,1); }
-  .accordion-item.open{ border-radius:20px; }
-  .accordion-head{ display:flex; justify-content:space-between; align-items:center; padding:16px 22px; cursor:pointer; font-weight:600; font-size:15px;
-    transition: background .25s ease; }
-  .accordion-head:hover{ background:var(--card2); }
-  .accordion-head .plus{ display:flex; align-items:center; justify-content:center; width:26px; height:26px; border-radius:50%;
-    background:var(--card2); font-size:16px; font-weight:600; color:var(--mid); flex-shrink:0;
-    transition: transform .55s cubic-bezier(.16,1,.3,1), background .3s; }
-  .accordion-item.open .plus{ transform: rotate(45deg); background:var(--blue-soft); color:var(--blue); }
-  .accordion-body{ max-height:0; overflow:hidden; padding:0 20px; background:var(--card2);
-    transition: max-height .6s cubic-bezier(.16,1,.3,1), padding .6s cubic-bezier(.16,1,.3,1); }
-  .accordion-item.open .accordion-body{ padding: 4px 20px 16px; }
+  .skills-tabcard{ background:var(--card); border:1px solid var(--border); border-radius:16px; overflow:hidden; margin-bottom:12px; }
+  .skills-tabnav{ display:flex; border-bottom:1px solid var(--border); }
+  .skills-tabbtn{ flex:1; font-family:var(--sans); font-size:13.5px; font-weight:600; color:var(--mid);
+    background:transparent; border:none; padding:14px 10px; cursor:pointer; border-bottom:2px solid transparent;
+    transition: background .25s ease, color .25s ease, border-color .25s ease; }
+  .skills-tabbtn:hover{ background:var(--card2); }
+  .skills-tabbtn.active{ color:var(--blue); border-bottom-color:var(--blue); }
+  .skills-tabpanel{ display:none; padding:14px 20px 18px; }
+  .skills-tabpanel.active{ display:block; }
+
   .skill-row{ display:flex; justify-content:space-between; padding:9px 0; font-size:14.5px; border-bottom:1px dashed var(--border); }
   .skill-row:last-child{ border-bottom:none; }
   .skill-row .lvl{ font-family:var(--mono); font-size:12px; color:var(--dim); }
@@ -97,7 +94,10 @@
   .proj-card{ background:var(--card); border:1px solid var(--border); border-radius:20px; overflow:hidden; box-shadow:0 4px 16px rgba(34,21,18,.07); display:flex; flex-direction:column;
     transition: transform .45s cubic-bezier(.16,1,.3,1), box-shadow .45s cubic-bezier(.16,1,.3,1); }
   .proj-card:hover{ transform: translateY(-5px); box-shadow:0 14px 28px rgba(34,21,18,.13); }
-  .proj-card-img{ position:relative; height:170px; background-size:cover; background-position:top center; flex-shrink:0; }
+  .proj-card > a{ display:block; }
+  .proj-card-img{ position:relative; height:170px; background-size:cover; background-position:top center; flex-shrink:0;
+    transition: filter .3s ease; }
+  .proj-card > a:hover .proj-card-img{ filter:brightness(1.06) saturate(1.05); }
   .proj-card-img::before{ content:""; position:absolute; inset:0; background: linear-gradient(180deg, rgba(0,0,0,.05) 40%, rgba(0,0,0,.65) 100%); }
   .proj-card-img .pc-tag{ position:absolute; bottom:10px; left:14px; z-index:1; font-family:var(--mono); font-size:10px; letter-spacing:.05em; text-transform:uppercase; color:#fff; opacity:.92; }
   .proj-card-img .pc-lock{ position:absolute; top:12px; right:12px; z-index:1; width:28px; height:28px; border-radius:50%; background:rgba(255,255,255,.22);
@@ -105,7 +105,7 @@
   .proj-card-body{ padding:16px 18px 18px; display:flex; flex-direction:column; flex:1; }
   .pc-name{ font-family:var(--sans-display); font-size:17.5px; font-weight:700; color:var(--ink); margin:0 0 6px; }
   .pc-desc{ font-size:12.5px; line-height:1.5; color:var(--mid); margin:0 0 12px; }
-  .pc-story{ padding-top:2px; }
+  .pc-story{ padding-top:2px; margin-top:auto; }
   .pc-story summary{ list-style:none; cursor:pointer; font-family:var(--mono); font-size:11.5px; font-weight:700; color:var(--blue);
     display:flex; align-items:center; gap:5px; }
   .pc-story summary::-webkit-details-marker{ display:none; }
@@ -141,12 +141,9 @@
   .journey-section{ margin-top:44px; }
   .journey-title{ font-family:var(--sans-display); text-align:center; font-size:clamp(19px,3.5vw,24px); font-weight:700; margin:0 0 8px; }
   .journey-sub{ text-align:center; font-size:13px; color:var(--dim); margin:0 0 30px; }
-  .journey-controls{ text-align:center; font-family:var(--mono); font-size:12px; color:var(--dim); opacity:0; height:0; overflow:hidden;
-    transition: opacity .5s ease; margin:-14px 0 24px; }
-  .journey-controls.ready{ opacity:1; height:auto; overflow:visible; }
-  .journey-wrap{ position:relative; width:100%; height:600px; margin:0 auto; }
+  .journey-wrap{ position:relative; width:100%; height:540px; margin:0 auto; }
   .journey-wrap svg{ position:absolute; inset:0; width:100%; height:100%; display:block; }
-  .journey-pin{ position:absolute; width:40px; height:40px; --shift:26px; transform:translate(-50%,-50%); z-index:2;
+  .journey-pin{ position:absolute; width:40px; height:40px; --shift:22px; transform:translate(-50%,-50%); z-index:2;
     display:flex; align-items:center; justify-content:center; color:var(--blue);
     filter:drop-shadow(0 3px 5px rgba(34,21,18,.15)); }
   .journey-pin.shift-down{ transform:translate(-50%, calc(-50% + var(--shift))); }
@@ -161,15 +158,88 @@
   @media (prefers-reduced-motion: reduce){ .journey-pin.now::after{ animation:none; } }
   .journey-card{ position:absolute; width:196px; background:var(--card); border:1px solid var(--border); border-top:3px solid var(--blue);
     border-radius:16px; padding:14px 16px 15px; cursor:pointer;
-    box-shadow:0 10px 26px rgba(34,21,18,.14); z-index:2; --gap:48px;
+    box-shadow:0 10px 26px rgba(34,21,18,.14); z-index:2; --gap:58px;
     transition: box-shadow .3s ease; }
   .journey-card.above{ transform:translate(-50%, calc(-100% - var(--gap))); }
   .journey-card.below{ transform:translate(-50%, var(--gap)); }
   .journey-card.active-stop{ box-shadow:0 0 0 3px var(--blue-soft), 0 10px 26px rgba(34,21,18,.14); }
+  .journey-card-plus{ position:absolute; top:12px; right:12px; width:22px; height:22px; border-radius:50%;
+    background:var(--card2); color:var(--mid); display:flex; align-items:center; justify-content:center;
+    font-size:14px; font-weight:600; line-height:1;
+    transition: transform .35s cubic-bezier(.16,1,.3,1), background .3s ease, color .3s ease; }
+  .journey-card.active-stop .journey-card-plus{ transform:rotate(45deg); background:var(--blue-soft); color:var(--blue); }
   .journey-card.now{ border:1px solid var(--border); border-top:3px solid var(--teal); }
   .journey-card.now.active-stop{ box-shadow:0 0 0 3px var(--teal-soft), 0 10px 26px rgba(34,21,18,.14); }
+  .journey-card.now.active-stop .journey-card-plus{ background:var(--teal-soft); color:var(--teal); }
   .journey-eyebrow{ font-family:var(--mono); font-size:10px; letter-spacing:.1em; color:var(--blue); font-weight:700; margin-bottom:5px; }
   .journey-card.now .journey-eyebrow{ color:#fff; background:var(--teal); display:inline-block; padding:2px 7px; border-radius:6px; }
+
+  /* Small road cards: stay white/cream, just a colored top border + colored eyebrow (brand accent, not full theme) */
+  .journey-card.brand-mumbai{ background:var(--card); border-top-color:#B9740E; }
+  .journey-card.brand-mumbai .journey-eyebrow{ color:#B9740E; }
+  .journey-card.brand-mumbai .journey-card-plus{ background:rgba(185,116,14,.14); color:#B9740E; }
+
+  .journey-card.brand-bnp{ background:var(--card); border-top-color:#00915A; }
+  .journey-card.brand-bnp .journey-eyebrow{ color:#00915A; }
+  .journey-card.brand-bnp .journey-card-plus{ background:rgba(0,145,90,.14); color:#00915A; }
+
+  .journey-card.brand-iu{ background:var(--card); border-top-color:#990000; }
+  .journey-card.brand-iu .journey-eyebrow{ color:#990000; }
+  .journey-card.brand-iu .journey-card-plus{ background:rgba(153,0,0,.12); color:#990000; }
+
+  .journey-card.brand-bcg{ background:var(--card); border-top-color:#00824B; }
+  .journey-card.brand-bcg .journey-eyebrow{ color:#00824B; }
+  .journey-card.brand-bcg .journey-card-plus{ background:rgba(0,130,75,.14); color:#00824B; }
+  .journey-card.brand-bcg.now .journey-eyebrow{ background:#00824B; color:#fff; opacity:1; display:inline-block; padding:2px 7px; border-radius:6px; }
+
+  .journey-card.brand-ey{ background:var(--card); border-top-color:#FFE600; }
+  .journey-card.brand-ey .journey-eyebrow{ color:#181818; }
+  .journey-card.brand-ey .journey-card-plus{ background:rgba(24,24,24,.1); color:#181818; }
+
+  .journey-pin.brand-bcg.now::after{ border-color:#00824B; }
+  .journey-pin.brand-bcg.now{ color:#00824B; }
+
+  /* Expanded spotlight cards: fully themed with the solid brand color + light text */
+  .journey-spotlight-card.brand-mumbai{ background:#B9740E; border-top-color:#8A5809; }
+  .journey-spotlight-card.brand-bnp{ background:#00915A; border-top-color:#00693F; }
+  .journey-spotlight-card.brand-iu{ background:#990000; border-top-color:#6E0000; }
+  .journey-spotlight-card.brand-bcg{ background:#00824B; border-top-color:#005C34; }
+  .journey-spotlight-card.brand-ey{ background:#181818; border-top-color:#FFE600; }
+
+  .journey-spotlight-card.brand-mumbai .js-spot-eyebrow, .journey-spotlight-card.brand-bnp .js-spot-eyebrow,
+  .journey-spotlight-card.brand-iu .js-spot-eyebrow, .journey-spotlight-card.brand-bcg .js-spot-eyebrow{
+    color:#fff; opacity:.92; }
+  .journey-spotlight-card.brand-ey .js-spot-eyebrow{ color:#FFE600; }
+
+  .journey-spotlight-card.brand-mumbai .js-spot-role, .journey-spotlight-card.brand-bnp .js-spot-role,
+  .journey-spotlight-card.brand-iu .js-spot-role, .journey-spotlight-card.brand-bcg .js-spot-role,
+  .journey-spotlight-card.brand-ey .js-spot-role{ color:#fff; }
+
+  .journey-spotlight-card.brand-mumbai .js-spot-org, .journey-spotlight-card.brand-bnp .js-spot-org,
+  .journey-spotlight-card.brand-iu .js-spot-org, .journey-spotlight-card.brand-bcg .js-spot-org,
+  .journey-spotlight-card.brand-ey .js-spot-org{ color:rgba(255,255,255,.8); }
+
+  .journey-spotlight-card.brand-mumbai .js-spot-date, .journey-spotlight-card.brand-bnp .js-spot-date,
+  .journey-spotlight-card.brand-iu .js-spot-date, .journey-spotlight-card.brand-bcg .js-spot-date,
+  .journey-spotlight-card.brand-ey .js-spot-date{ color:rgba(255,255,255,.6); }
+
+  .journey-spotlight-card.brand-mumbai .js-spot-bullets li, .journey-spotlight-card.brand-bnp .js-spot-bullets li,
+  .journey-spotlight-card.brand-iu .js-spot-bullets li, .journey-spotlight-card.brand-bcg .js-spot-bullets li,
+  .journey-spotlight-card.brand-ey .js-spot-bullets li,
+  .journey-spotlight-card.brand-mumbai .js-spot-desc, .journey-spotlight-card.brand-bnp .js-spot-desc,
+  .journey-spotlight-card.brand-iu .js-spot-desc, .journey-spotlight-card.brand-bcg .js-spot-desc{
+    color:rgba(255,255,255,.92); }
+  .journey-spotlight-card.brand-mumbai .js-spot-bullets b, .journey-spotlight-card.brand-bnp .js-spot-bullets b,
+  .journey-spotlight-card.brand-iu .js-spot-bullets b, .journey-spotlight-card.brand-bcg .js-spot-bullets b{ color:#fff; text-decoration:underline; }
+  .journey-spotlight-card.brand-ey .js-spot-bullets b{ color:#FFE600; }
+
+  .journey-spotlight-card.brand-mumbai .journey-spotlight-close, .journey-spotlight-card.brand-bnp .journey-spotlight-close,
+  .journey-spotlight-card.brand-iu .journey-spotlight-close, .journey-spotlight-card.brand-bcg .journey-spotlight-close,
+  .journey-spotlight-card.brand-ey .journey-spotlight-close{ background:rgba(255,255,255,.16); color:#fff; }
+  .journey-spotlight-card.brand-ey .journey-spotlight-close{ color:#FFE600; }
+
+  .journey-spotlight-card.brand-bcg.now .js-spot-eyebrow{
+    background:#fff; color:#00824B; opacity:1; display:inline-block; padding:2px 7px; border-radius:6px; }
 
   /* Full-screen spotlight modal */
   .journey-spotlight-overlay{ position:fixed; inset:0; background:rgba(15,10,8,.62); z-index:100; opacity:0; pointer-events:none;
@@ -229,6 +299,12 @@
 
   .journey-stack{ display:none; max-width:440px; margin:0 auto; }
   .js-row{ position:relative; padding-left:46px; padding-bottom:32px; border-left:2px dashed #D7DBE3; margin-left:18px; cursor:pointer; }
+  .js-row-plus{ position:absolute; right:0; top:-2px; width:24px; height:24px; border-radius:50%;
+    background:var(--card2); color:var(--mid); display:flex; align-items:center; justify-content:center;
+    font-size:15px; font-weight:600; line-height:1; border:1px solid var(--border);
+    transition: transform .35s cubic-bezier(.16,1,.3,1), background .3s ease, color .3s ease; }
+  .js-row.active-stop .js-row-plus{ transform:rotate(45deg); background:var(--blue-soft); color:var(--blue); }
+  .js-row.now.active-stop .js-row-plus{ background:var(--teal-soft); color:var(--teal); }
   .js-row:last-child{ border-left-color:transparent; padding-bottom:0; }
   .js-pin{ position:absolute; left:-19px; top:-2px; width:38px; height:38px; border-radius:50%; background:var(--card); border:1.5px solid var(--border);
     color:var(--blue); display:flex; align-items:center; justify-content:center; box-shadow:0 4px 10px rgba(34,21,18,.15); overflow:hidden; }
@@ -237,6 +313,11 @@
   .js-row.now .js-pin{ border-color:var(--teal); box-shadow:0 0 0 5px rgba(193,68,59,.22), 0 4px 10px rgba(34,21,18,.15); }
   .js-eyebrow{ font-family:var(--mono); font-size:11px; letter-spacing:.1em; color:var(--blue); font-weight:700; margin-bottom:5px; }
   .js-row.now .js-eyebrow{ color:var(--teal); }
+  .js-row.brand-mumbai .js-eyebrow{ color:#B9740E; }
+  .js-row.brand-bnp .js-eyebrow{ color:#00915A; }
+  .js-row.brand-iu .js-eyebrow{ color:#8E1B1B; }
+  .js-row.brand-ey .js-eyebrow{ color:#181818; }
+  .js-row.brand-bcg .js-eyebrow{ color:#00824B; }
   .js-date{ font-family:var(--mono); font-size:12.5px; color:var(--dim); margin-bottom:3px; }
   .js-role{ font-family:var(--sans-display); font-size:16.5px; font-weight:700; margin:0 0 3px; line-height:1.25; }
   .js-org{ font-size:14px; color:var(--mid); margin-bottom:10px; }
@@ -262,6 +343,22 @@
 <body>
 <div class="wrap">
 
+  <div class="hero">
+    <div class="hero-info">
+      <div class="hero-name">Yadnaishwari Gaikwad</div>
+      <div class="hero-sub">Senior AI Product Delivery Analyst @BCG</div>
+      <div class="hero-edu">MSIS, Kelley School of Business - Indiana University Bloomington</div>
+    </div>
+    <div class="hero-social">
+      <a href="https://linkedin.com/in/yadnaishwari-gaikwad" target="_blank" rel="noopener" title="LinkedIn">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.03-1.85-3.03-1.85 0-2.14 1.44-2.14 2.94v5.66H9.36V9h3.41v1.56h.05c.48-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45z"/></svg>
+      </a>
+      <a href="mailto:yadnaishwari.gaikwad@gmail.com" title="Email">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
+      </a>
+    </div>
+  </div>
+
   <nav>
     <div class="pillnav">
       <button data-page="home" class="active">Home</button>
@@ -271,26 +368,10 @@
   </nav>
 
   <section class="page active" id="home">
-    <div class="hero">
-      <div class="hero-social">
-        <a href="https://linkedin.com/in/yadnaishwari-gaikwad" target="_blank" rel="noopener" title="LinkedIn">
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.03-1.85-3.03-1.85 0-2.14 1.44-2.14 2.94v5.66H9.36V9h3.41v1.56h.05c.48-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45z"/></svg>
-        </a>
-        <a href="mailto:yadnaishwari.gaikwad@gmail.com" title="Email">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
-        </a>
-      </div>
-      <div>
-        <div class="hero-name">Yadnaishwari Gaikwad</div>
-        <div class="hero-sub">Senior AI Product Delivery Analyst @BCG</div>
-        <div class="hero-edu">MSIS, Kelley School of Business - Indiana University Bloomington</div>
-      </div>
-    </div>
 
     <div class="journey-section">
       <h2 class="journey-title">The Road So Far</h2>
       <p class="journey-sub">Five stops, one thread: hands-on engineering that grew into leading AI product delivery.</p>
-      <div class="journey-controls" id="journeyControls">Tap any stop above to revisit the details.</div>
 
       <div class="journey-wrap">
         <svg viewBox="0 0 1200 420" preserveAspectRatio="none">
@@ -310,12 +391,12 @@
             </radialGradient>
           </defs>
 
-          <path id="roadPath" d="M60,300 C180,300 210,70 330,70 C450,70 480,320 600,320 C720,320 750,80 870,80 C990,80 1020,280 1140,280"
-                fill="none" stroke="#3F3F45" stroke-width="17" stroke-linecap="round"/>
-          <path d="M60,300 C180,300 210,70 330,70 C450,70 480,320 600,320 C720,320 750,80 870,80 C990,80 1020,280 1140,280"
-                fill="none" stroke="#2C2C31" stroke-width="17" stroke-linecap="round" stroke-opacity=".5" transform="translate(0,2)"/>
-          <path d="M60,300 C180,300 210,70 330,70 C450,70 480,320 600,320 C720,320 750,80 870,80 C990,80 1020,280 1140,280"
-                fill="none" stroke="#F4EFE3" stroke-opacity=".85" stroke-width="3.5" stroke-dasharray="22 18" stroke-linecap="round"/>
+          <path id="roadPath" d="M60,245 C180,245 210,175 330,175 C450,175 480,245 600,245 C720,245 750,175 870,175 C990,175 1020,245 1140,245"
+                fill="none" stroke="#3F3F45" stroke-width="16" stroke-linecap="round"/>
+          <path d="M60,245 C180,245 210,175 330,175 C450,175 480,245 600,245 C720,245 750,175 870,175 C990,175 1020,245 1140,245"
+                fill="none" stroke="#2C2C31" stroke-width="16" stroke-linecap="round" stroke-opacity=".5" transform="translate(0,2)"/>
+          <path d="M60,245 C180,245 210,175 330,175 C450,175 480,245 600,245 C720,245 750,175 870,175 C990,175 1020,245 1140,245"
+                fill="none" stroke="#F4EFE3" stroke-opacity=".85" stroke-width="3.4" stroke-dasharray="20 16" stroke-linecap="round"/>
 
           <g class="journey-car-icon" id="journeyCar">
             <ellipse cx="0" cy="10" rx="21" ry="3.2" fill="rgba(20,10,8,.28)"/>
@@ -335,50 +416,55 @@
           </g>
         </svg>
 
-        <div class="journey-pin shift-down stop-fade" data-stop="1" style="left:5%; top:71.4%;">
+        <div class="journey-pin shift-down stop-fade" data-stop="1" style="left:5%; top:58.33%;">
           <img src="mumbai-university-logo.png" alt="Mumbai University">
         </div>
-        <div class="journey-card above stop-fade" data-stop="1" style="left:5%; top:71.4%;">
+        <div class="journey-card below brand-mumbai stop-fade" data-stop="1" style="left:5%; top:58.33%;">
+          <span class="journey-card-plus">+</span>
           <div class="journey-eyebrow">STOP 01</div>
           <div class="journey-date">May 2018</div>
           <div class="journey-role">BE, Computer Engineering</div>
           <div class="journey-org">Mumbai University</div>
         </div>
 
-        <div class="journey-pin shift-up stop-fade" data-stop="2" style="left:27.5%; top:16.7%;">
+        <div class="journey-pin shift-up stop-fade" data-stop="2" style="left:27.5%; top:41.67%;">
           <img src="bnp-paribas-logo.png" alt="BNP Paribas">
         </div>
-        <div class="journey-card below stop-fade" data-stop="2" style="left:27.5%; top:16.7%;">
+        <div class="journey-card above brand-bnp stop-fade" data-stop="2" style="left:27.5%; top:41.67%;">
+          <span class="journey-card-plus">+</span>
           <div class="journey-eyebrow">STOP 02</div>
           <div class="journey-date">Jun 2018 - May 2021</div>
           <div class="journey-role">Engineering Support Analyst</div>
           <div class="journey-org">BNP Paribas ISPL, Mumbai</div>
         </div>
 
-        <div class="journey-pin shift-down stop-fade" data-stop="3" style="left:50%; top:76.2%;">
+        <div class="journey-pin shift-down stop-fade" data-stop="3" style="left:50%; top:58.33%;">
           <img src="indiana-university-logo.png" alt="Indiana University">
         </div>
-        <div class="journey-card above stop-fade" data-stop="3" style="left:50%; top:76.2%;">
+        <div class="journey-card below brand-iu stop-fade" data-stop="3" style="left:50%; top:58.33%;">
+          <span class="journey-card-plus">+</span>
           <div class="journey-eyebrow">STOP 03</div>
           <div class="journey-date">2021 - 2022</div>
           <div class="journey-role">MS, Information Systems</div>
           <div class="journey-org">Kelley School of Business</div>
         </div>
 
-        <div class="journey-pin shift-up stop-fade" data-stop="4" style="left:72.5%; top:19%;">
+        <div class="journey-pin shift-up stop-fade" data-stop="4" style="left:72.5%; top:41.67%;">
           <img src="ey-logo.png" alt="EY">
         </div>
-        <div class="journey-card below stop-fade" data-stop="4" style="left:72.5%; top:19%;">
+        <div class="journey-card above brand-ey stop-fade" data-stop="4" style="left:72.5%; top:41.67%;">
+          <span class="journey-card-plus">+</span>
           <div class="journey-eyebrow">STOP 04</div>
           <div class="journey-date">Jul 2022 - Jun 2023</div>
           <div class="journey-role">Senior Consultant, IT Solutions</div>
           <div class="journey-org">Ernst &amp; Young, Chicago</div>
         </div>
 
-        <div class="journey-pin now shift-down stop-fade" data-stop="5" style="left:95%; top:66.7%;">
+        <div class="journey-pin now brand-bcg shift-down stop-fade" data-stop="5" style="left:95%; top:58.33%;">
           <img src="bcg-logo.png" alt="BCG">
         </div>
-        <div class="journey-card above now stop-fade" data-stop="5" style="left:95%; top:66.7%;">
+        <div class="journey-card below now brand-bcg stop-fade" data-stop="5" style="left:95%; top:58.33%;">
+          <span class="journey-card-plus">+</span>
           <div class="journey-eyebrow">NOW</div>
           <div class="journey-date">Sep 2023 - Present</div>
           <div class="journey-role">Senior Delivery AI Product Analyst</div>
@@ -387,35 +473,40 @@
       </div>
 
       <div class="journey-stack">
-        <div class="js-row" data-stop="1">
+        <div class="js-row brand-mumbai" data-stop="1">
+          <span class="js-row-plus">+</span>
           <div class="js-pin"><img src="mumbai-university-logo.png" alt="Mumbai University"></div>
           <div class="js-eyebrow">STOP 01</div>
           <div class="js-date">May 2018</div>
           <div class="js-role">BE, Computer Engineering</div>
           <div class="js-org">Mumbai University</div>
         </div>
-        <div class="js-row" data-stop="2">
+        <div class="js-row brand-bnp" data-stop="2">
+          <span class="js-row-plus">+</span>
           <div class="js-pin"><img src="bnp-paribas-logo.png" alt="BNP Paribas"></div>
           <div class="js-eyebrow">STOP 02</div>
           <div class="js-date">Jun 2018 - May 2021</div>
           <div class="js-role">Engineering Support Analyst</div>
           <div class="js-org">BNP Paribas ISPL, Mumbai</div>
         </div>
-        <div class="js-row" data-stop="3">
+        <div class="js-row brand-iu" data-stop="3">
+          <span class="js-row-plus">+</span>
           <div class="js-pin"><img src="indiana-university-logo.png" alt="Indiana University"></div>
           <div class="js-eyebrow">STOP 03</div>
           <div class="js-date">2021 - 2022</div>
           <div class="js-role">MS, Information Systems</div>
           <div class="js-org">Kelley School of Business</div>
         </div>
-        <div class="js-row" data-stop="4">
+        <div class="js-row brand-ey" data-stop="4">
+          <span class="js-row-plus">+</span>
           <div class="js-pin"><img src="ey-logo.png" alt="EY"></div>
           <div class="js-eyebrow">STOP 04</div>
           <div class="js-date">Jul 2022 - Jun 2023</div>
           <div class="js-role">Senior Consultant, IT Solutions</div>
           <div class="js-org">Ernst &amp; Young, Chicago</div>
         </div>
-        <div class="js-row now" data-stop="5">
+        <div class="js-row now brand-bcg" data-stop="5">
+          <span class="js-row-plus">+</span>
           <div class="js-pin"><img src="bcg-logo.png" alt="BCG"></div>
           <div class="js-eyebrow">NOW</div>
           <div class="js-date">Sep 2023 - Present</div>
@@ -427,7 +518,7 @@
       <div class="journey-spotlight-overlay" id="journeySpotlight">
         <button type="button" class="journey-spotlight-close" id="journeySpotlightClose" aria-label="Close">&times;</button>
 
-        <div class="journey-spotlight-card" data-spot="1">
+        <div class="journey-spotlight-card brand-mumbai" data-spot="1">
           <img class="js-spot-logo" src="mumbai-university-logo.png" alt="Mumbai University">
           <div class="js-spot-eyebrow">STOP 01</div>
           <div class="js-spot-date">May 2018</div>
@@ -436,7 +527,7 @@
           <p class="js-spot-desc">Where it started - the technical foundation everything after was built on.</p>
         </div>
 
-        <div class="journey-spotlight-card" data-spot="2">
+        <div class="journey-spotlight-card brand-bnp" data-spot="2">
           <img class="js-spot-logo" src="bnp-paribas-logo.png" alt="BNP Paribas">
           <div class="js-spot-eyebrow">STOP 02</div>
           <div class="js-spot-date">Jun 2018 - May 2021</div>
@@ -448,7 +539,7 @@
           </ul>
         </div>
 
-        <div class="journey-spotlight-card" data-spot="3">
+        <div class="journey-spotlight-card brand-iu" data-spot="3">
           <img class="js-spot-logo" src="indiana-university-logo.png" alt="Indiana University">
           <div class="js-spot-eyebrow">STOP 03</div>
           <div class="js-spot-date">2021 - 2022</div>
@@ -457,7 +548,7 @@
           <p class="js-spot-desc">Where hands-on engineering met consulting delivery.</p>
         </div>
 
-        <div class="journey-spotlight-card" data-spot="4">
+        <div class="journey-spotlight-card brand-ey" data-spot="4">
           <img class="js-spot-logo" src="ey-logo.png" alt="EY">
           <div class="js-spot-eyebrow">STOP 04</div>
           <div class="js-spot-date">Jul 2022 - Jun 2023</div>
@@ -469,7 +560,7 @@
           </ul>
         </div>
 
-        <div class="journey-spotlight-card now" data-spot="5">
+        <div class="journey-spotlight-card now brand-bcg" data-spot="5">
           <img class="js-spot-logo" src="bcg-logo.png" alt="BCG">
           <div class="js-spot-eyebrow">NOW</div>
           <div class="js-spot-date">Sep 2023 - Present</div>
@@ -486,40 +577,33 @@
 
     </div>
 
-    <h2 class="subtitle">Skills</h2>
+    <h2 class="subtitle" id="skills-section">Skills</h2>
 
-    <div class="accordion-item">
-      <div class="accordion-head">Program &amp; Delivery<span class="plus">+</span></div>
-      <div class="accordion-body">
+    <div class="skills-tabcard">
+      <div class="skills-tabnav">
+        <button class="skills-tabbtn active" data-skilltab="program">Program &amp; Delivery</button>
+        <button class="skills-tabbtn" data-skilltab="data">Data &amp; Analytics</button>
+        <button class="skills-tabbtn" data-skilltab="ai">AI &amp; Automation</button>
+        <button class="skills-tabbtn" data-skilltab="certs">Certifications</button>
+      </div>
+      <div class="skills-tabpanel active" data-skilltab="program">
         <div class="skill-row"><span>Agile / Scrum</span><span class="lvl">daily use</span></div>
         <div class="skill-row"><span>Requirements-to-spec translation</span><span class="lvl">core skill</span></div>
         <div class="skill-row"><span>Backlog &amp; sprint delivery</span><span class="lvl">core skill</span></div>
         <div class="skill-row"><span>Stakeholder &amp; C-suite management</span><span class="lvl">core skill</span></div>
       </div>
-    </div>
-
-    <div class="accordion-item">
-      <div class="accordion-head">Data &amp; Analytics<span class="plus">+</span></div>
-      <div class="accordion-body">
+      <div class="skills-tabpanel" data-skilltab="data">
         <div class="skill-row"><span>SQL</span><span class="lvl">working</span></div>
         <div class="skill-row"><span>Excel / Alteryx</span><span class="lvl">advanced</span></div>
         <div class="skill-row"><span>Tableau / Power BI</span><span class="lvl">advanced</span></div>
         <div class="skill-row"><span>Python</span><span class="lvl">working</span></div>
       </div>
-    </div>
-
-    <div class="accordion-item">
-      <div class="accordion-head">AI &amp; Automation<span class="plus">+</span></div>
-      <div class="accordion-body">
+      <div class="skills-tabpanel" data-skilltab="ai">
         <div class="skill-row"><span>Claude, ChatGPT, prompt engineering</span><span class="lvl">daily use</span></div>
         <div class="skill-row"><span>RPA (Blue Prism)</span><span class="lvl">hands-on</span></div>
         <div class="skill-row"><span>AI Fluency Ladder (BCG)</span><span class="lvl">Automator (all 4 rungs)</span></div>
       </div>
-    </div>
-
-    <div class="accordion-item">
-      <div class="accordion-head">Certifications<span class="plus">+</span></div>
-      <div class="accordion-body">
+      <div class="skills-tabpanel" data-skilltab="certs">
         <div class="skill-row"><span>Microsoft Certified: Azure Fundamentals</span><span class="lvl"></span></div>
         <div class="skill-row"><span>Product Management: Building a Product Roadmap</span><span class="lvl"></span></div>
         <div class="skill-row"><span>EY Cloud &amp; Analytics (Bronze)</span><span class="lvl"></span></div>
@@ -536,9 +620,11 @@
       <div class="proj-grid">
 
         <div class="proj-card">
-          <div class="proj-card-img" style="background-image:url('careerpilot-shot.png');">
-            <span class="pc-tag">AI - Job Search Platform</span>
-          </div>
+          <a href="https://www.resumebuild.store/" target="_blank" rel="noopener">
+            <div class="proj-card-img" style="background-image:url('careerpilot-shot.png');">
+              <span class="pc-tag">AI - Job Search Platform</span>
+            </div>
+          </a>
           <div class="proj-card-body">
             <h3 class="pc-name">CareerPilot</h3>
             <p class="pc-desc">An agentic job-application platform - works through an approved batch overnight across LinkedIn, Greenhouse/Lever, company portals, and Workday, with firm autonomy boundaries: always pausing for sponsorship, work authorization, and anything unclear or blocked. Invite-only (runs on live AI tokens).</p>
@@ -551,14 +637,15 @@
                 <div class="pc-stage"><div class="k">Outcome</div><p>In progress - invite-only, since it runs on live AI tokens. Reach out for a demo.</p></div>
               </div>
             </details>
-            <a class="pc-visit" href="https://www.resumebuild.store/" target="_blank">Visit &rarr;</a>
           </div>
         </div>
 
         <div class="proj-card">
-          <div class="proj-card-img" style="background-image:url('annotation-shot.png');">
-            <span class="pc-tag">AI - Data Quality</span>
-          </div>
+          <a href="https://yadnaishwari.github.io/Annotation-quality-lab/" target="_blank" rel="noopener">
+            <div class="proj-card-img" style="background-image:url('annotation-shot.png');">
+              <span class="pc-tag">AI - Data Quality</span>
+            </div>
+          </a>
           <div class="proj-card-body">
             <h3 class="pc-name">Annotation Quality Lab</h3>
             <p class="pc-desc">A labeling tool that measures whether AI training data can be trusted - inter-annotator agreement (Cohen's kappa), gold-set accuracy, and a disagreement queue.</p>
@@ -571,7 +658,6 @@
                 <div class="pc-stage"><div class="k">Outcome</div><p>Shipped and hosted - a working demonstration of the data-quality machinery behind human-in-the-loop AI.</p></div>
               </div>
             </details>
-            <a class="pc-visit" href="https://yadnaishwari.github.io/Annotation-quality-lab/" target="_blank">Visit &rarr;</a>
           </div>
         </div>
 
@@ -603,9 +689,11 @@
       <div class="proj-grid">
 
         <div class="proj-card">
-          <div class="proj-card-img" style="background-image:url('lifeos-shot.png');">
-            <span class="pc-tag">Personal - Daily Life</span>
-          </div>
+          <a href="https://aaj-ki-taaza-khabar.vercel.app/" target="_blank" rel="noopener">
+            <div class="proj-card-img" style="background-image:url('lifeos-shot.png');">
+              <span class="pc-tag">Personal - Daily Life</span>
+            </div>
+          </a>
           <div class="proj-card-body">
             <h3 class="pc-name">Life OS</h3>
             <p class="pc-desc">Wardrobe and meal planning in one place - outfit building, closet inventory, and meal prep, so getting dressed and fed stops eating your morning.</p>
@@ -618,14 +706,15 @@
                 <div class="pc-stage"><div class="k">Outcome</div><p>Shipped and live - genuinely used, not just built.</p></div>
               </div>
             </details>
-            <a class="pc-visit" href="https://aaj-ki-taaza-khabar.vercel.app/" target="_blank">Visit &rarr;</a>
           </div>
         </div>
 
         <div class="proj-card">
-          <div class="proj-card-img" style="background:linear-gradient(150deg,#1B2E29,#3F6E6C);">
-            <span class="pc-tag">Personal - Study Tool</span>
-          </div>
+          <a href="https://aajgaaditerabhaichalayega.vercel.app/" target="_blank" rel="noopener">
+            <div class="proj-card-img" style="background-image:url('illinois-rules-shot.png');">
+              <span class="pc-tag">Personal - Study Tool</span>
+            </div>
+          </a>
           <div class="proj-card-body">
             <h3 class="pc-name">Illinois Rules of the Road</h3>
             <p class="pc-desc">Flashcards, quiz mode, and a timed exam simulator built to actually pass the Illinois DMV written test - signs, right-of-way, and every number they ask.</p>
@@ -638,14 +727,15 @@
                 <div class="pc-stage"><div class="k">Outcome</div><p>Shipped and live.</p></div>
               </div>
             </details>
-            <a class="pc-visit" href="https://aajgaaditerabhaichalayega.vercel.app/" target="_blank">Visit &rarr;</a>
           </div>
         </div>
 
         <div class="proj-card">
-          <div class="proj-card-img" style="background-image:url('tripplanner-shot.png');">
-            <span class="pc-tag">Personal - Travel</span>
-          </div>
+          <a href="https://gommigoomi.vercel.app/" target="_blank" rel="noopener">
+            <div class="proj-card-img" style="background-image:url('tripplanner-shot.png');">
+              <span class="pc-tag">Personal - Travel</span>
+            </div>
+          </a>
           <div class="proj-card-body">
             <h3 class="pc-name">Trip Planner</h3>
             <p class="pc-desc">A day-by-day city itinerary tool - drag-to-reorder stops, transit notes, map links, and local tips, for trips planned properly instead of in a group chat.</p>
@@ -658,7 +748,6 @@
                 <div class="pc-stage"><div class="k">Outcome</div><p>Shipped and live.</p></div>
               </div>
             </details>
-            <a class="pc-visit" href="https://gommigoomi.vercel.app/" target="_blank">Visit &rarr;</a>
           </div>
         </div>
 
@@ -689,12 +778,10 @@
 
 <script>
 const reduceMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-const REVEAL_SEL = ".hero-name,.hero-sub,.hero-edu,h1.pagetitle,h2.subtitle,.accordion-item,.proj-card,.about-card,.journey-title,.journey-sub,.journey-wrap,.js-row";
+const REVEAL_SEL = "h1.pagetitle,h2.subtitle,.skills-tabcard,.proj-card,.about-card,.journey-title,.journey-sub,.journey-wrap,.js-row";
 
 if (reduceMotion) {
   document.querySelectorAll(".stop-fade").forEach(el => { el.style.opacity = "1"; });
-  const controlsRM = document.getElementById("journeyControls");
-  if (controlsRM) controlsRM.classList.add("ready");
 }
 
 const spotlightOverlay = document.getElementById("journeySpotlight");
@@ -718,7 +805,7 @@ function closeSpotlight() {
   if (!spotlightOverlay) return;
   spotlightOverlay.classList.remove("show");
   spotlightOverlay.querySelectorAll(".journey-spotlight-card").forEach(card => card.classList.remove("show"));
-  document.querySelectorAll(".journey-pin.active-stop, .journey-card.active-stop").forEach(el => el.classList.remove("active-stop"));
+  document.querySelectorAll(".journey-pin.active-stop, .journey-card.active-stop, .js-row.active-stop").forEach(el => el.classList.remove("active-stop"));
 }
 
 const spotlightCloseBtn = document.getElementById("journeySpotlightClose");
@@ -742,7 +829,11 @@ document.querySelectorAll(".journey-wrap .journey-card, .journey-wrap .journey-p
   });
 });
 document.querySelectorAll(".journey-stack .js-row").forEach(row => {
-  row.addEventListener("click", () => { openSpotlight(row.dataset.stop); });
+  row.addEventListener("click", () => {
+    document.querySelectorAll(".js-row.active-stop").forEach(r => r.classList.remove("active-stop"));
+    row.classList.add("active-stop");
+    openSpotlight(row.dataset.stop);
+  });
 });
 
 function triggerJourneyDrive(wrapEl) {
@@ -767,11 +858,9 @@ function triggerJourneyDrive(wrapEl) {
     setTimeout(() => { closeSpotlight(); }, ms);
   });
 
-  // Tour finishes at 28s: close the last spotlight and hand control to the person
+  // Tour finishes at 28s: close the last spotlight
   setTimeout(() => {
     closeSpotlight();
-    const controls = document.getElementById("journeyControls");
-    if (controls) controls.classList.add("ready");
   }, 28000);
 }
 
@@ -807,35 +896,31 @@ document.querySelectorAll(".page").forEach(setupReveal);
 
 document.querySelectorAll(".pillnav button").forEach(btn => {
   btn.onclick = () => {
+    const page = document.getElementById(btn.dataset.page);
+    const wasAlreadyActive = page.classList.contains("active");
     document.querySelectorAll(".pillnav button").forEach(b => b.classList.remove("active"));
     document.querySelectorAll(".page").forEach(p => p.classList.remove("active"));
     btn.classList.add("active");
-    const page = document.getElementById(btn.dataset.page);
     page.classList.add("active");
-    window.scrollTo({ top: 0, behavior: "smooth" });
-    setupReveal(page);
-  };
-});
-document.querySelectorAll(".accordion-head").forEach(head => {
-  head.onclick = () => {
-    const item = head.parentElement;
-    const body = item.querySelector(".accordion-body");
-    const isOpen = item.classList.contains("open");
-    if (isOpen) {
-      body.style.maxHeight = body.scrollHeight + "px";
-      requestAnimationFrame(() => { body.style.maxHeight = "0px"; });
-      item.classList.remove("open");
+    if (!wasAlreadyActive) setupReveal(page);
+    const scrollTargetId = btn.dataset.scrollTo;
+    if (scrollTargetId) {
+      setTimeout(() => {
+        const target = document.getElementById(scrollTargetId);
+        if (target) target.scrollIntoView({ behavior: "smooth", block: "start" });
+      }, 30);
     } else {
-      item.classList.add("open");
-      body.style.maxHeight = body.scrollHeight + "px";
-      body.addEventListener("transitionend", function onEnd(e){
-        if (e.propertyName === "max-height" && item.classList.contains("open")) {
-          body.style.maxHeight = "none";
-        }
-        body.removeEventListener("transitionend", onEnd);
-      });
+      window.scrollTo({ top: 0, behavior: "smooth" });
     }
   };
+});
+document.querySelectorAll(".skills-tabbtn").forEach(btn => {
+  btn.addEventListener("click", () => {
+    const tabcard = btn.closest(".skills-tabcard");
+    const target = btn.dataset.skilltab;
+    tabcard.querySelectorAll(".skills-tabbtn").forEach(b => b.classList.toggle("active", b === btn));
+    tabcard.querySelectorAll(".skills-tabpanel").forEach(p => p.classList.toggle("active", p.dataset.skilltab === target));
+  });
 });
 </script>
 </body>
