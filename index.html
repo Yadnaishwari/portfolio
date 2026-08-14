@@ -6,7 +6,7 @@
 <title>Yad Gaikwad</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Source+Serif+4:opsz,wght@8..60,600;8..60,700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
   :root{
     --bg:#F7F4EC; --card:#FFFFFF; --card2:#F1ECE1; --border:rgba(34,21,18,.10);
@@ -14,7 +14,7 @@
     --blue:#9E2B2E; --blue-soft:#F5E1DF;
     --teal:#C1443B; --teal-soft:#FBEAE7;
     --sans:"Inter", -apple-system, sans-serif; --mono:"IBM Plex Mono", monospace;
-    --sans-display:"Space Grotesk", "Inter", -apple-system, sans-serif;
+    --sans-display:"Source Serif 4", Georgia, "Times New Roman", serif;
   }
   *{ box-sizing:border-box; }
   body{ margin:0; background:var(--bg); color:var(--ink); font-family:var(--sans); -webkit-font-smoothing:antialiased; }
@@ -154,15 +154,16 @@
   .about-tag{ color:#7C9BFF; font-family:var(--mono); font-size:13px; margin:0 0 18px; }
   .about-bio{ color:#D8D8DC; font-size:14.5px; line-height:1.7; }
 
-  /* Journey timeline (home page): vertical line on the left, tiles filling the right */
+  /* Journey (home page): line + compact pills on the left, full detail panel on the right */
   .journey-section{ margin-top:8px; }
   .journey-title{ font-family:var(--sans-display); text-align:left; font-size:clamp(19px,3.5vw,24px); font-weight:700; margin:0 0 18px; }
 
-  .journey-timeline{ max-width:760px; margin:0 auto; }
+  .journey-layout{ display:flex; gap:32px; align-items:stretch; }
+  .journey-list{ flex:0 0 340px; min-width:0; display:flex; flex-direction:column; justify-content:space-between; }
+  .journey-detail{ flex:1 1 auto; min-width:0; }
 
-  .jt-row{ position:relative; display:flex; align-items:flex-start; gap:22px; padding-bottom:26px; }
-  .jt-row:last-child{ padding-bottom:0; }
-  .jt-line{ position:absolute; left:23px; top:50px; bottom:0; width:2px; background:var(--border); }
+  .jt-row{ position:relative; display:flex; align-items:center; gap:16px; }
+  .jt-line{ position:absolute; left:23px; top:52px; bottom:-16px; width:2px; background:var(--border); }
   .jt-row:last-child .jt-line{ display:none; }
 
   .jt-pin{ flex:0 0 48px; width:48px; height:48px; border-radius:50%; background:var(--card); border:3px solid var(--border);
@@ -181,32 +182,38 @@
   .jt-pin.brand-ey{ border-color:#FFE600; }
   .jt-pin.brand-bcg{ border-color:#00824B; }
 
-  .jt-tile{ flex:1 1 auto; min-width:0; background:var(--card); border:1px solid var(--border); border-left:4px solid var(--blue);
-    border-radius:16px; padding:16px 20px; cursor:pointer; box-shadow:0 4px 14px rgba(34,21,18,.08);
-    transition: transform .2s cubic-bezier(.16,1,.3,1), box-shadow .2s ease; }
-  .jt-tile:hover{ transform:translateX(4px); box-shadow:0 10px 24px rgba(34,21,18,.14); }
-  .jt-tile.active-stop{ box-shadow:0 0 0 3px var(--blue-soft), 0 10px 24px rgba(34,21,18,.14); }
+  .jt-pill{ position:relative; flex:1 1 auto; min-width:0; display:flex; align-items:center; gap:14px;
+    background:var(--card); border:1px solid var(--border); border-radius:16px; padding:16px 18px; cursor:pointer;
+    font-family:inherit; text-align:left; box-shadow:0 2px 8px rgba(34,21,18,.06);
+    transition: border-color .2s ease, box-shadow .2s ease, background .2s ease, transform .2s ease; }
+  .jt-pill:hover{ transform:translateX(3px); box-shadow:0 6px 16px rgba(34,21,18,.1); }
 
-  .jt-top{ display:flex; align-items:center; justify-content:space-between; gap:10px; margin-bottom:6px; }
-  .jt-eyebrow{ font-family:var(--mono); font-size:10.5px; letter-spacing:.1em; color:var(--blue); font-weight:700; }
-  .jt-date{ font-family:var(--mono); font-size:11px; color:var(--dim); white-space:nowrap; }
-  .jt-role{ font-family:var(--sans-display); font-size:16px; font-weight:700; margin:0 0 3px; line-height:1.3; }
-  .jt-org{ font-size:13px; color:var(--mid); }
+  .jt-plus{ flex:0 0 26px; width:26px; height:26px; border-radius:50%; background:var(--card2); color:var(--mid);
+    display:flex; align-items:center; justify-content:center; font-size:15px; font-weight:700; line-height:1;
+    transition: transform .3s cubic-bezier(.16,1,.3,1), background .25s ease, color .25s ease; }
+  .jt-pill.active .jt-plus{ transform:rotate(45deg); }
 
-  .jt-tile.brand-mumbai{ border-left-color:#B9740E; } .jt-tile.brand-mumbai .jt-eyebrow{ color:#B9740E; }
-  .jt-tile.brand-bnp{ border-left-color:#00915A; } .jt-tile.brand-bnp .jt-eyebrow{ color:#00915A; }
-  .jt-tile.brand-iu{ border-left-color:#990000; } .jt-tile.brand-iu .jt-eyebrow{ color:#990000; }
-  .jt-tile.brand-ey{ border-left-color:#FFE600; } .jt-tile.brand-ey .jt-eyebrow{ color:#181818; }
-  .jt-tile.brand-bcg.now{ border-left-color:#00824B; }
-  .jt-tile.brand-bcg.now .jt-eyebrow{ color:#fff; background:#00824B; display:inline-block; padding:2px 8px; border-radius:6px; }
+  .jt-pill-text{ min-width:0; }
+  .jt-eyebrow{ display:block; font-family:var(--mono); font-size:10.5px; letter-spacing:.08em; color:var(--blue); font-weight:700; margin-bottom:2px; }
+  .jt-role{ display:block; font-family:var(--sans); font-size:14.5px; font-weight:700; color:var(--ink); line-height:1.35; }
 
+  .jt-pill.brand-mumbai .jt-eyebrow{ color:#B9740E; } .jt-pill.brand-mumbai.active{ border-color:#B9740E; } .jt-pill.brand-mumbai.active .jt-plus{ background:#B9740E; color:#fff; }
+  .jt-pill.brand-bnp .jt-eyebrow{ color:#00915A; } .jt-pill.brand-bnp.active{ border-color:#00915A; } .jt-pill.brand-bnp.active .jt-plus{ background:#00915A; color:#fff; }
+  .jt-pill.brand-iu .jt-eyebrow{ color:#990000; } .jt-pill.brand-iu.active{ border-color:#990000; } .jt-pill.brand-iu.active .jt-plus{ background:#990000; color:#fff; }
+  .jt-pill.brand-ey .jt-eyebrow{ color:#181818; } .jt-pill.brand-ey.active{ border-color:#FFE600; } .jt-pill.brand-ey.active .jt-plus{ background:#FFE600; color:#181818; }
+  .jt-pill.brand-bcg.now .jt-eyebrow{ color:#00824B; } .jt-pill.brand-bcg.now.active{ border-color:#00824B; } .jt-pill.brand-bcg.now.active .jt-plus{ background:#00824B; color:#fff; }
+
+  @media (max-width:900px){
+    .journey-layout{ flex-direction:column; }
+    .journey-list{ flex-basis:auto; width:100%; justify-content:flex-start; gap:14px; }
+    .journey-detail{ width:100%; }
+  }
   @media (max-width:480px){
-    .jt-row{ gap:14px; }
-    .jt-pin{ flex-basis:40px; width:40px; height:40px; }
+    .jt-row{ gap:10px; }
+    .jt-pin{ flex-basis:38px; width:38px; height:38px; }
     .jt-pin img{ width:22px; height:22px; }
-    .jt-line{ left:19px; }
-    .jt-tile{ padding:14px 16px; }
-    .jt-top{ flex-direction:column; align-items:flex-start; gap:2px; }
+    .jt-line{ left:18px; top:46px; }
+    .jt-pill{ padding:13px 14px; }
   }
 
   /* Expanded spotlight cards: fully themed with the solid brand color + light text */
@@ -243,28 +250,16 @@
   .journey-spotlight-card.brand-iu .js-spot-bullets b, .journey-spotlight-card.brand-bcg .js-spot-bullets b{ color:#fff; text-decoration:underline; }
   .journey-spotlight-card.brand-ey .js-spot-bullets b{ color:#FFE600; }
 
-  .journey-spotlight-card.brand-mumbai .journey-spotlight-close, .journey-spotlight-card.brand-bnp .journey-spotlight-close,
-  .journey-spotlight-card.brand-iu .journey-spotlight-close, .journey-spotlight-card.brand-bcg .journey-spotlight-close,
-  .journey-spotlight-card.brand-ey .journey-spotlight-close{ background:rgba(255,255,255,.16); color:#fff; }
-  .journey-spotlight-card.brand-ey .journey-spotlight-close{ color:#FFE600; }
-
   .journey-spotlight-card.brand-bcg.now .js-spot-eyebrow{
     background:#fff; color:#00824B; opacity:1; display:inline-block; padding:2px 7px; border-radius:6px; }
 
-  /* Full-screen spotlight modal */
-  .journey-spotlight-overlay{ position:fixed; inset:0; background:rgba(15,10,8,.62); z-index:100; opacity:0; pointer-events:none;
-    transition:opacity .45s ease, backdrop-filter .45s ease; backdrop-filter:blur(0px);
-    display:flex; align-items:center; justify-content:center; padding:24px; }
-  .journey-spotlight-overlay.show{ opacity:1; pointer-events:auto; backdrop-filter:blur(3px); }
-  .journey-spotlight-close{ position:absolute; top:18px; right:18px; width:34px; height:34px; border-radius:50%;
-    background:var(--card2); border:1px solid var(--border); cursor:pointer; font-size:15px; color:var(--mid); z-index:2;
-    transition: transform .3s cubic-bezier(.34,1.56,.64,1), background .25s ease, color .25s ease; }
-  .journey-spotlight-close:hover{ transform:rotate(90deg); background:var(--blue-soft); color:var(--blue); }
-  .journey-spotlight-card{ position:relative; max-width:520px; width:100%; max-height:82vh; overflow-y:auto;
-    background:var(--card); border-radius:22px; padding:34px 32px; box-shadow:0 30px 70px rgba(0,0,0,.4);
-    transform:scale(.82) translateY(28px); opacity:0;
-    transition:transform .5s cubic-bezier(.34,1.56,.64,1), opacity .35s ease; display:none; }
-  .journey-spotlight-card.show{ display:block; opacity:1; transform:scale(1) translateY(0); }
+  /* Detail panel: static, always shows the currently selected stop */
+  .journey-spotlight-overlay{ position:relative; }
+  .journey-spotlight-card{ position:relative; max-width:none; width:100%; max-height:none; overflow:visible;
+    background:var(--card); border-radius:22px; padding:34px 32px; box-shadow:0 20px 46px rgba(34,21,18,.16);
+    opacity:0; display:none; }
+  .journey-spotlight-card.show{ display:block; opacity:1; animation:jdFadeIn .35s ease both; }
+  @keyframes jdFadeIn{ from{ opacity:0; transform:translateY(8px); } to{ opacity:1; transform:translateY(0); } }
 
   @keyframes spotIn{ from{ opacity:0; transform:translateY(14px); } to{ opacity:1; transform:translateY(0); } }
   .journey-spotlight-card :is(.js-spot-logo,.js-spot-eyebrow,.js-spot-date,.js-spot-role,.js-spot-org,.js-spot-desc,.js-spot-bullets li){
@@ -351,89 +346,84 @@
     <div class="journey-section">
       <h2 class="journey-title">The Journey So Far</h2>
 
-      <div class="journey-timeline">
-        <div class="jt-row" data-stop="5">
-          <div class="jt-line"></div>
-          <div class="jt-pin now brand-bcg" data-stop="5">
-            <img src="bcg-logo.png" alt="BCG" onerror="this.outerHTML='&lt;div class=&quot;jt-pin-fallback&quot;&gt;BCG&lt;/div&gt;'">
-          </div>
-          <div class="jt-tile now brand-bcg" data-stop="5">
-            <div class="jt-top">
-              <span class="jt-eyebrow">HOME BASE</span>
-              <span class="jt-date">Sep 2023 - Present</span>
+      <div class="journey-layout">
+        <div class="journey-list">
+          <div class="jt-row" data-stop="5">
+            <div class="jt-line"></div>
+            <div class="jt-pin now brand-bcg" data-stop="5">
+              <img src="bcg-logo.png" alt="BCG" onerror="this.outerHTML='&lt;div class=&quot;jt-pin-fallback&quot;&gt;BCG&lt;/div&gt;'">
             </div>
-            <div class="jt-role">Senior Delivery AI Product Analyst</div>
-            <div class="jt-org">Boston Consulting Group, Chicago</div>
+            <button type="button" class="jt-pill now brand-bcg active" data-stop="5">
+              <span class="jt-plus">+</span>
+              <span class="jt-pill-text">
+                <span class="jt-eyebrow">NOW</span>
+                <span class="jt-role">Senior Delivery AI Product Analyst</span>
+              </span>
+            </button>
+          </div>
+
+          <div class="jt-row" data-stop="4">
+            <div class="jt-line"></div>
+            <div class="jt-pin brand-ey" data-stop="4">
+              <img src="ey-logo.png" alt="EY" onerror="this.outerHTML='&lt;div class=&quot;jt-pin-fallback&quot;&gt;EY&lt;/div&gt;'">
+            </div>
+            <button type="button" class="jt-pill brand-ey" data-stop="4">
+              <span class="jt-plus">+</span>
+              <span class="jt-pill-text">
+                <span class="jt-eyebrow">STOP 04</span>
+                <span class="jt-role">Senior Consultant, IT Solutions</span>
+              </span>
+            </button>
+          </div>
+
+          <div class="jt-row" data-stop="3">
+            <div class="jt-line"></div>
+            <div class="jt-pin brand-iu" data-stop="3">
+              <img src="indiana-university-logo.png" alt="Indiana University" onerror="this.outerHTML='&lt;div class=&quot;jt-pin-fallback&quot;&gt;IU&lt;/div&gt;'">
+            </div>
+            <button type="button" class="jt-pill brand-iu" data-stop="3">
+              <span class="jt-plus">+</span>
+              <span class="jt-pill-text">
+                <span class="jt-eyebrow">STOP 03</span>
+                <span class="jt-role">MS, Information Systems</span>
+              </span>
+            </button>
+          </div>
+
+          <div class="jt-row" data-stop="2">
+            <div class="jt-line"></div>
+            <div class="jt-pin brand-bnp" data-stop="2">
+              <img src="bnp-paribas-logo.png" alt="BNP Paribas" onerror="this.outerHTML='&lt;div class=&quot;jt-pin-fallback&quot;&gt;BNP&lt;/div&gt;'">
+            </div>
+            <button type="button" class="jt-pill brand-bnp" data-stop="2">
+              <span class="jt-plus">+</span>
+              <span class="jt-pill-text">
+                <span class="jt-eyebrow">STOP 02</span>
+                <span class="jt-role">Engineering Support Analyst</span>
+              </span>
+            </button>
+          </div>
+
+          <div class="jt-row" data-stop="1">
+            <div class="jt-line"></div>
+            <div class="jt-pin brand-mumbai" data-stop="1">
+              <img src="mumbai-university-logo.png" alt="Mumbai University" onerror="this.outerHTML='&lt;div class=&quot;jt-pin-fallback&quot;&gt;MU&lt;/div&gt;'">
+            </div>
+            <button type="button" class="jt-pill brand-mumbai" data-stop="1">
+              <span class="jt-plus">+</span>
+              <span class="jt-pill-text">
+                <span class="jt-eyebrow">STOP 01</span>
+                <span class="jt-role">BE, Computer Engineering</span>
+              </span>
+            </button>
           </div>
         </div>
 
-        <div class="jt-row" data-stop="4">
-          <div class="jt-line"></div>
-          <div class="jt-pin brand-ey" data-stop="4">
-            <img src="ey-logo.png" alt="EY" onerror="this.outerHTML='&lt;div class=&quot;jt-pin-fallback&quot;&gt;EY&lt;/div&gt;'">
-          </div>
-          <div class="jt-tile brand-ey" data-stop="4">
-            <div class="jt-top">
-              <span class="jt-eyebrow">STOP 02</span>
-              <span class="jt-date">Jul 2022 - Jun 2023</span>
-            </div>
-            <div class="jt-role">Senior Consultant, IT Solutions</div>
-            <div class="jt-org">Ernst &amp; Young, Chicago</div>
-          </div>
-        </div>
-
-        <div class="jt-row" data-stop="3">
-          <div class="jt-line"></div>
-          <div class="jt-pin brand-iu" data-stop="3">
-            <img src="indiana-university-logo.png" alt="Indiana University" onerror="this.outerHTML='&lt;div class=&quot;jt-pin-fallback&quot;&gt;IU&lt;/div&gt;'">
-          </div>
-          <div class="jt-tile brand-iu" data-stop="3">
-            <div class="jt-top">
-              <span class="jt-eyebrow">STOP 03</span>
-              <span class="jt-date">2021 - 2022</span>
-            </div>
-            <div class="jt-role">MS, Information Systems</div>
-            <div class="jt-org">Kelley School of Business</div>
-          </div>
-        </div>
-
-        <div class="jt-row" data-stop="2">
-          <div class="jt-line"></div>
-          <div class="jt-pin brand-bnp" data-stop="2">
-            <img src="bnp-paribas-logo.png" alt="BNP Paribas" onerror="this.outerHTML='&lt;div class=&quot;jt-pin-fallback&quot;&gt;BNP&lt;/div&gt;'">
-          </div>
-          <div class="jt-tile brand-bnp" data-stop="2">
-            <div class="jt-top">
-              <span class="jt-eyebrow">STOP 04</span>
-              <span class="jt-date">Jun 2018 - May 2021</span>
-            </div>
-            <div class="jt-role">Engineering Support Analyst</div>
-            <div class="jt-org">BNP Paribas ISPL, Mumbai</div>
-          </div>
-        </div>
-
-        <div class="jt-row" data-stop="1">
-          <div class="jt-line"></div>
-          <div class="jt-pin brand-mumbai" data-stop="1">
-            <img src="mumbai-university-logo.png" alt="Mumbai University" onerror="this.outerHTML='&lt;div class=&quot;jt-pin-fallback&quot;&gt;MU&lt;/div&gt;'">
-          </div>
-          <div class="jt-tile brand-mumbai" data-stop="1">
-            <div class="jt-top">
-              <span class="jt-eyebrow">STOP 05</span>
-              <span class="jt-date">May 2018</span>
-            </div>
-            <div class="jt-role">BE, Computer Engineering</div>
-            <div class="jt-org">Mumbai University</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="journey-spotlight-overlay" id="journeySpotlight">
-        <button type="button" class="journey-spotlight-close" id="journeySpotlightClose" aria-label="Close">&times;</button>
+      <div class="journey-detail journey-spotlight-overlay" id="journeySpotlight">
 
         <div class="journey-spotlight-card brand-mumbai" data-spot="1">
           <img class="js-spot-logo" src="mumbai-university-logo.png" alt="Mumbai University" onerror="this.outerHTML='&lt;div class=&quot;js-spot-logo-fallback&quot;&gt;MU&lt;/div&gt;'">
-          <div class="js-spot-eyebrow">STOP 05</div>
+          <div class="js-spot-eyebrow">STOP 01</div>
           <div class="js-spot-date">May 2018</div>
           <div class="js-spot-role">BE, Computer Engineering</div>
           <div class="js-spot-org">Mumbai University</div>
@@ -447,7 +437,7 @@
 
         <div class="journey-spotlight-card brand-bnp" data-spot="2">
           <img class="js-spot-logo" src="bnp-paribas-logo.png" alt="BNP Paribas" onerror="this.outerHTML='&lt;div class=&quot;js-spot-logo-fallback&quot;&gt;BNP&lt;/div&gt;'">
-          <div class="js-spot-eyebrow">STOP 04</div>
+          <div class="js-spot-eyebrow">STOP 02</div>
           <div class="js-spot-date">Jun 2018 - May 2021</div>
           <div class="js-spot-role">Engineering Support Analyst</div>
           <div class="js-spot-org">BNP Paribas ISPL, Mumbai, India</div>
@@ -473,19 +463,21 @@
 
         <div class="journey-spotlight-card brand-ey" data-spot="4">
           <img class="js-spot-logo" src="ey-logo.png" alt="EY" onerror="this.outerHTML='&lt;div class=&quot;js-spot-logo-fallback&quot;&gt;EY&lt;/div&gt;'">
-          <div class="js-spot-eyebrow">STOP 02</div>
+          <div class="js-spot-eyebrow">STOP 04</div>
           <div class="js-spot-date">Jul 2022 - Jun 2023</div>
           <div class="js-spot-role">Senior Consultant, IT Solutions</div>
           <div class="js-spot-org">Ernst &amp; Young, Chicago, IL</div>
           <ul class="js-spot-bullets">
-            <li><b>Orchestrated</b> the end-to-end migration program for <b>14 applications</b>, driving cross-stakeholder alignment to a <b>95%</b> on-time completion rate.</li>
-            <li><b>Defined and rolled out</b> a scalable Data Mesh framework for data-product development, cutting implementation timelines <b>30%</b> and improving operational efficiency <b>20%</b>.</li>
+            <li><b>Formulated</b> a scalable Data Mesh framework for an external client's data-product development, decentralizing data ownership by domain - cutting implementation timelines <b>30%</b> and improving operational efficiency <b>20%</b>.</li>
+            <li><b>Orchestrated</b> the migration plan for <b>14 applications</b>, tracking tasks via Excel dashboards and driving stakeholder alignment to a <b>95%</b> on-time completion rate.</li>
+            <li><b>Designed</b> migration workflows and documentation to ensure compliance with internal and regulatory standards - accelerating migration timelines <b>75%</b>.</li>
+            <li><b>Led</b> cross-functional teams building data products, writing JIRA user stories that lifted functionality and customer satisfaction <b>80%</b>.</li>
           </ul>
         </div>
 
         <div class="journey-spotlight-card now brand-bcg" data-spot="5">
           <img class="js-spot-logo" src="bcg-logo.png" alt="BCG" onerror="this.outerHTML='&lt;div class=&quot;js-spot-logo-fallback&quot;&gt;BCG&lt;/div&gt;'">
-          <div class="js-spot-eyebrow">HOME BASE</div>
+          <div class="js-spot-eyebrow">NOW</div>
           <div class="js-spot-date">Sep 2023 - Present</div>
           <div class="js-spot-role">Senior Delivery AI Product Analyst</div>
           <div class="js-spot-org">Boston Consulting Group, Chicago, IL</div>
@@ -702,51 +694,30 @@
 
 <script>
 const reduceMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-const REVEAL_SEL = "h1.pagetitle,h2.subtitle,.skills-tabcard,.proj-card,.about-card,.journey-title,.jt-row";
+const REVEAL_SEL = "h1.pagetitle,h2.subtitle,.skills-tabcard,.proj-card,.about-card,.journey-title,.jt-row,.journey-detail";
 
 const spotlightOverlay = document.getElementById("journeySpotlight");
 
-function setActiveStop(stopNum, on) {
-  document.querySelectorAll('[data-stop="' + stopNum + '"]').forEach(el => {
-    if (el.classList.contains("jt-tile")) {
-      el.classList.toggle("active-stop", on);
-    }
+function selectStop(stopNum) {
+  // Highlight the matching pill, un-highlight the rest
+  document.querySelectorAll(".jt-pill").forEach(pill => {
+    pill.classList.toggle("active", pill.dataset.stop === String(stopNum));
   });
+  // Show the matching detail card, hide the rest
+  if (spotlightOverlay) {
+    spotlightOverlay.querySelectorAll(".journey-spotlight-card").forEach(card => {
+      card.classList.toggle("show", card.dataset.spot === String(stopNum));
+    });
+  }
 }
 
-function openSpotlight(stopNum) {
-  if (!spotlightOverlay) return;
-  spotlightOverlay.querySelectorAll(".journey-spotlight-card").forEach(card => {
-    card.classList.toggle("show", card.dataset.spot === String(stopNum));
-  });
-  spotlightOverlay.classList.add("show");
-}
-function closeSpotlight() {
-  if (!spotlightOverlay) return;
-  spotlightOverlay.classList.remove("show");
-  spotlightOverlay.querySelectorAll(".journey-spotlight-card").forEach(card => card.classList.remove("show"));
-  document.querySelectorAll(".jt-tile.active-stop").forEach(el => el.classList.remove("active-stop"));
-}
-
-const spotlightCloseBtn = document.getElementById("journeySpotlightClose");
-if (spotlightCloseBtn) spotlightCloseBtn.addEventListener("click", closeSpotlight);
-if (spotlightOverlay) {
-  spotlightOverlay.addEventListener("click", (e) => {
-    if (e.target === spotlightOverlay) closeSpotlight();
-  });
-}
-document.addEventListener("keydown", (e) => {
-  if (e.key === "Escape") closeSpotlight();
+// Clicking any pin or pill in the list selects that stop and updates the detail panel
+document.querySelectorAll(".journey-list .jt-pin, .journey-list .jt-pill").forEach(el => {
+  el.addEventListener("click", () => selectStop(el.dataset.stop));
 });
 
-// Clicking any pin or tile in the timeline opens its detail spotlight
-document.querySelectorAll(".journey-timeline .jt-pin, .journey-timeline .jt-tile").forEach(el => {
-  el.addEventListener("click", () => {
-    const stopNum = el.dataset.stop;
-    setActiveStop(stopNum, true);
-    openSpotlight(stopNum);
-  });
-});
+// BCG (Home Base) is open by default on load
+selectStop("5");
 
 let revealObserver = null;
 if (!reduceMotion) {
